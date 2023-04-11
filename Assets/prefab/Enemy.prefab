@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAttack: {fileID: 6522347435065344406}
   enemyMove: {fileID: 6522347435065344407}
-  enemyStat: {fileID: 0}
+  enemyStat: {fileID: 259796591400478255}
   AttackCoolTime: 3
 --- !u!114 &6522347435065344406
 MonoBehaviour:
@@ -158,8 +158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3462834437d5b214e909a9c7a048eb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
   IsMove: 0
+  speed: 1
+  Enemynum: 0
+  EnemyAI: 0
+  IsChase: 0
 --- !u!50 &6522347435065344404
 Rigidbody2D:
   serializedVersion: 4
@@ -176,11 +179,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b3545f27eda0e5d49aed9b7240edeef8, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &259796591400478255
 MonoBehaviour:
   m_ObjectHideFlags: 0

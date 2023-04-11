@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7525475453490922975}
   - component: {fileID: 8007721956419870346}
   - component: {fileID: 2441083500676331777}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: PlayerNoise
-  m_TagString: Player
+  m_TagString: Noise
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

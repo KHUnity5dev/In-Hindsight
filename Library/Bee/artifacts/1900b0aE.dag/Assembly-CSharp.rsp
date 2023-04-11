@@ -117,12 +117,12 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"C:/OnlyUnity/KHUnity/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll"
--r:"C:/OnlyUnity/KHUnity/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll"
--r:"C:/OnlyUnity/KHUnity/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll"
--r:"C:/OnlyUnity/KHUnity/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll"
--r:"C:/OnlyUnity/KHUnity/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.Unsafe.dll"
--r:"C:/OnlyUnity/KHUnity/In-Hindsight/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"C:/OnlyUnity/Gittemp/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll"
+-r:"C:/OnlyUnity/Gittemp/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll"
+-r:"C:/OnlyUnity/Gittemp/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll"
+-r:"C:/OnlyUnity/Gittemp/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll"
+-r:"C:/OnlyUnity/Gittemp/In-Hindsight/Library/PackageCache/com.unity.burst@1.6.6/Unity.Burst.Unsafe.dll"
+-r:"C:/OnlyUnity/Gittemp/In-Hindsight/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -369,6 +369,11 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/Map/Script/Door.cs"
+"Assets/Map/Script/Gamemanager_map.cs"
+"Assets/Map/Script/MapButton.cs"
+"Assets/Map/Script/Scenemanager.cs"
+"Assets/Map/Script/Switc_Button.cs"
 "Assets/player/Hero Knight - Pixel Art/ColorSwap/ColorSwap_HeroKnight.cs"
 "Assets/player/Hero Knight - Pixel Art/Demo/DestroyEvent_HeroKnight.cs"
 "Assets/player/Hero Knight - Pixel Art/Demo/HeroKnight.cs"
@@ -388,6 +393,9 @@
 "Assets/script/EnemyAttack.cs"
 "Assets/script/EnemyMove.cs"
 "Assets/script/EnemyStat.cs"
+"Assets/script/NPC/ActiveUI.cs"
+"Assets/script/NPC/QuestButton.cs"
+"Assets/script/NPC/ShopButton.cs"
 "Assets/script/TempMove.cs"
 -langversion:9.0
 
