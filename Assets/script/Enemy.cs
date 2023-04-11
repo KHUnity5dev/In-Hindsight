@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {   
         Scan = enemyAttack.Check();
+        if(Input.GetKeyDown(KeyCode.P)){
+            enemyMove.Chase(gameObject);
+        }
     }
     void FixedUpdate() {
         CurAttackCoolTime -= 0.02f;
