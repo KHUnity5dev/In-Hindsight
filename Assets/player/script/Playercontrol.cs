@@ -78,21 +78,30 @@ public class Playercontrol : MonoBehaviour
         Debug.DrawRay(Rigid.position + Vector2.up, Raydir, new Color(1, 0, 0)); // 상호 작용 레이
         if (Input.GetKeyDown(KeyCode.E))
         {
-            RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position + Vector2.up, Raydir, 1f, LayerMask.GetMask("Object"));
+            RaycastHit2D rayHitobject = Physics2D.Raycast(Rigid.position + Vector2.up, Raydir, 1f, LayerMask.GetMask("Object"));
+            RaycastHit2D rayHitenemy = Physics2D.Raycast(Rigid.position + Vector2.up, Raydir, 1f, LayerMask.GetMask("Enemy"));
 
-            if (rayHit.collider != null)
+            if (rayHitenemy)
             {
-                if (rayHit.distance < 0.5f)
+                if (rayHitenemy.distance < 0.5f)
                 {
-                    Debug.Log(rayHit.collider.name);
-                    GameObject obj = rayHit.collider.gameObject;
-                    if(obj.tag  == "Enemy") // 암살
+                    Debug.Log(rayHitenemy.collider.name);
+                    GameObject obj = rayHitenemy.collider.gameObject;
+                    if (obj.tag == "Enemy") // 암살
                     {
                         Debug.Log("Enemy detected!!!!");
-                        Anim.SetTrigger("Attack");
+                        Anim.SetTrigger("Amsal!");
                         obj.SetActive(false);
                     }
-                    else if(obj.tag == "Dore") //문열기
+                }
+            }
+            else if (rayHitobject)
+            {
+                if (rayHitobject.distance < 0.5f)
+                {
+                    Debug.Log(rayHitobject.collider.name);
+                    GameObject obj = rayHitobject.collider.gameObject;
+                    if(obj.tag == "Dore") //문열기
                         obj.SetActive(false);
                 }
             }
