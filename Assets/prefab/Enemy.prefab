@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6522347435065344407}
   - component: {fileID: 6522347435065344404}
   - component: {fileID: 259796591400478255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAttack: {fileID: 6522347435065344406}
   enemyMove: {fileID: 6522347435065344407}
+  enemyStat: {fileID: 0}
   AttackCoolTime: 3
 --- !u!114 &6522347435065344406
 MonoBehaviour:

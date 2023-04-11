@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     Animator Anim;
     SpriteRenderer Renderer;
 
-    private static Player Inst;  // ½ºÅÂÆ½ ÇÃ·¹ÀÌ¾î °´Ã¼ ÇÏ³ª ¹Û¿¡ »ý¼ºµÇÁö ¾Ê´Â´Ù.
+    private static Player Inst;  // ï¿½ï¿½ï¿½ï¿½Æ½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ã¼ ï¿½Ï³ï¿½ ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
     public enum State
     {
         Idle,
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         }
     }
     [SerializeField]
-    private State playerstate; // ÇÃ·¹ÀÌ¾îÀÇ »óÅÂ 
+    private State playerstate; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     public static State Player_State
     {
         get
@@ -47,21 +47,21 @@ public class Player : MonoBehaviour
         }
     }
     [SerializeField]
-    private SightState playersight; // ÇÃ·¹ÀÌ¾îÀÇ ½Ã¾ß »óÅÂ
+    private SightState playersight; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     public static SightState Player_Sight
     {
         get { return Inst.playersight; }
         set { Inst.playersight = value; }
     } 
     [SerializeField]
-    private float speed = 3f; //ÀÏ¹Ý ¼Óµµ
+    private float speed = 3f; //ï¿½Ï¹ï¿½ ï¿½Óµï¿½
     public static float Player_Speed
     {
         get { return Inst.speed; }
         set { Inst.speed = value; }
     }
     [SerializeField]
-    private float runspeed = 2f; //´Þ¸±¶§ ¼Óµµ ¹è¼Ó
+    private float runspeed = 2f; //ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½
     public static float Run_Speed
     {
         get { return Inst.runspeed; }
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         get { return Inst.m_noiseprefab; }
     }
 
-    public float Noise_Timer = 1f; // ¼ÒÀ½ ÁÖ±â
+    public float Noise_Timer = 1f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 
     void Awake()
     {
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Inst = this; // ÇÃ·¹ÀÌ¾î¸¦ ÂüÁ¶ÇÏ·Á¸é ÀÌ ÄÚµå°¡ °¡Àå¸ÕÀú ½ÇÇàµÇ¾î¾ßÇÔ 
+        Inst = this; // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ 
         Anim = GetComponent<Animator>();
         Renderer = GetComponent<SpriteRenderer>();
     }
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
     //    playerSight = SightState.Normal;
     //    playerState = State.Idle;
     //}
-    public void RunNoiseCreater() // ´Þ¸±¶§ ¼ÒÀ½ ÄÝ¶óÀÌ´õ¸¦ ¸¸µå´Â ÇÔ¼ö
+    public void RunNoiseCreater() // ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     {
         Noise_Timer -= Time.deltaTime;
         if (Noise_Timer < 0f)

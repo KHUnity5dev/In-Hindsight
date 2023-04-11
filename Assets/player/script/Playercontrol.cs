@@ -65,7 +65,7 @@ public class Playercontrol : MonoBehaviour
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
-                obj.SetActive(false);
+                rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(10); //Enemy가 피가 닳는 코드 한줄
             }    
         }
         Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // 마우스 포인터 레이
