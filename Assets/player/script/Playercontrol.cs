@@ -102,7 +102,8 @@ public class Playercontrol : MonoBehaviour
                     Debug.Log(rayHitobject.collider.name);
                     GameObject obj = rayHitobject.collider.gameObject;
                     if(obj.tag == "Dore") //¹®¿­±â
-                        obj.SetActive(false);
+                        Invoke("Get_Player_Interacted",0.1f);
+                        // obj.SendMessage("Get_Player_Interacted");
                 }
             }
         }
