@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public EnemyAttack enemyAttack;
     public EnemyMove enemyMove;
+    public EnemyStat enemyStat;
     public float AttackCoolTime;
     float CurAttackCoolTime;
     GameObject Scan;
@@ -15,13 +16,11 @@ public class Enemy : MonoBehaviour
     {
         CurAttackCoolTime = AttackCoolTime;
     }
-
+    
     // Update is called once per frame
     void Update()
     {   
         Scan = enemyAttack.Check();
-        
-
     }
     void FixedUpdate() {
         CurAttackCoolTime -= 0.02f;
@@ -33,6 +32,11 @@ public class Enemy : MonoBehaviour
         }
         if (!enemyMove.IsMove){
             enemyMove.Move();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Noise") {
+            enemyMove.Chase(other.gameObject);//소음 감지됐을때의 행동 함수 호출
         }
     }
 }

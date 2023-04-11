@@ -16,12 +16,6 @@ public class EnemyMove : MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void RightMove(){
         rigid.velocity = new Vector2(MoveSpeed,0);
     }
@@ -43,6 +37,9 @@ public class EnemyMove : MonoBehaviour
         //nextmove에 따라 좌,우이동
         // ---------------------
         // for(int i = 0; i<10; i++){
+        //     if(!IsMove){
+        //         코루틴 정지     
+        //     }
         //     if(nextMove[i] == 0){
         //         RightMove();
         //     }else if (nextMove[i] == 1){
@@ -55,10 +52,13 @@ public class EnemyMove : MonoBehaviour
         // 왼쪽,왼쪽,오른쪽,왼쪽,오른쪽,오른쪽,오른쪽 (...) 이런식으로 패턴형으로 움직일 수 있습니다.
         // 랜덤으로 할지 패턴을 미리 여럿 정해놔서 리스트에 담아두고 사용할지 Enemy 종류마다 서로다른 정해진 패턴을 사용할지 생각해야합니다
         // 시간 지연 후
-        Invoke("temp",2);
+        Invoke("temp",2);//임시시험용 코드
     }
     void temp() {
         IsMove = false;
         MoveSpeed *= -1;
+    }
+    public void Chase(GameObject Noise){
+        //현재 위치에서 Noise가 있는 방향으로 Move한다.
     }
 }

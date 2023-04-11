@@ -29,6 +29,7 @@ public class EnemyAttack : MonoBehaviour
         Dir[3] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.up;
         Dir[4] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.down;
 
+
         GameObject Return = null;
         for (int i = 0; i < 5; i++){
 
