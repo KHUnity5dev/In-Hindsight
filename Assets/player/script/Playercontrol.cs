@@ -13,6 +13,8 @@ public class Playercontrol : MonoBehaviour
     Animator Anim;
     Vector3 Raydir;
     Vector3 Playerdir; // 1이면 오른쪽 -1이면 왼쪽
+
+    public GameObject ActiveUI;
     void Awake() // 시작할때 한번만 실행되는 함수
     {
         Spriterenderer = GetComponent<SpriteRenderer>();
@@ -80,6 +82,7 @@ public class Playercontrol : MonoBehaviour
         {
             RaycastHit2D rayHitobject = Physics2D.Raycast(Rigid.position + Vector2.up, Raydir, 1f, LayerMask.GetMask("Object"));
             RaycastHit2D rayHitenemy = Physics2D.Raycast(Rigid.position + Vector2.up, Raydir, 1f, LayerMask.GetMask("Enemy"));
+            RaycastHit2D rayHitNPC = Physics2D.Raycast(Rigid.position + Vector2.up, Raydir, 1f, LayerMask.GetMask("NPC"));
 
             if (rayHitenemy)
             {
@@ -105,6 +108,15 @@ public class Playercontrol : MonoBehaviour
                         // Invoke("Get_Player_Interacted",0.1f);
                         obj.SendMessage("Get_Player_Interacted");
                     }
+                }
+            }
+            else if (rayHitNPC.collider != null)
+            {
+                if (rayHitNPC.distance < 0.5f)
+                {
+                    Debug.Log(rayHitNPC.collider.name);
+                    GameObject obj = rayHitNPC.collider.gameObject;
+                    ActiveUI.GetComponent<ActiveUI>().Active(obj);
                 }
             }
         }
