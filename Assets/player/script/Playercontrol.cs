@@ -70,7 +70,7 @@ public class Playercontrol : MonoBehaviour
         }
         Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // 마우스 포인터 레이
 
-        if (Input.GetKeyDown(KeyCode.R) && Inventory.Bullets > 0 && Inventory.Magazine < Inventory.Maxmagazine)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Invoke("Reload",1);
         }
@@ -119,10 +119,12 @@ public class Playercontrol : MonoBehaviour
     }
     void Reload()
     {
-        Inventory.Bullets -= (Inventory.Maxmagazine - Inventory.Magazine);
-        Inventory.Magazine = Inventory.Maxmagazine;
-        Debug.Log(Inventory.Bullets);
-        Debug.Log(Inventory.Magazine);
+        if (Inventory.Bullets > 0 && Inventory.Magazine < Inventory.Maxmagazine)
+        {
+            Inventory.Bullets -= (Inventory.Maxmagazine - Inventory.Magazine);
+            Inventory.Magazine = Inventory.Maxmagazine;
+            Debug.Log(Inventory.Bullets);
+        }
     }
     void OnMove(InputValue value) // 이동 함수
     {
