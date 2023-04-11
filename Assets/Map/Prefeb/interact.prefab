@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7866754063262906636}
   - component: {fileID: 5240063962936140773}
   - component: {fileID: 2831161609124280893}
-  - component: {fileID: 2090727631475640897}
+  - component: {fileID: 9053945270915792129}
   m_Layer: 0
   m_Name: interact
   m_TagString: Untagged
@@ -96,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &2090727631475640897
+--- !u!114 &9053945270915792129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7513273819213671814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5de02a920542334385a14dd896abb1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 730e905eb459efe45818450a3e7ad954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -367,7 +367,11 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Map/Script/Get_Player_Interact.cs"
+"Assets/Map/Script/Button.cs"
+"Assets/Map/Script/Door.cs"
+"Assets/Map/Script/Gamemanager_map.cs"
+"Assets/Map/Script/Scenemanager.cs"
+"Assets/Map/Script/Switc_Button.cs"
 -langversion:9.0
 
 /deterministic
