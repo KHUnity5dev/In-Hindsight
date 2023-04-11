@@ -101,9 +101,10 @@ public class Playercontrol : MonoBehaviour
                 {
                     Debug.Log(rayHitobject.collider.name);
                     GameObject obj = rayHitobject.collider.gameObject;
-                    if(obj.tag == "Dore") //문열기
-                        Invoke("Get_Player_Interacted",0.1f);
-                        // obj.SendMessage("Get_Player_Interacted");
+                    if(obj.tag == "Dore"){//문열기
+                        // Invoke("Get_Player_Interacted",0.1f);
+                        obj.SendMessage("Get_Player_Interacted");
+                    }
                 }
             }
         }
