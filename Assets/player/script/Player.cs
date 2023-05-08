@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
     //    playerSight = SightState.Normal;
     //    playerState = State.Idle;
     //}
-    public void RunNoiseCreater() // �޸��� ���� �ݶ��̴��� ����� �Լ�
+    public void RunNoiseCreater(float size) // �޸��� ���� �ݶ��̴��� ����� �Լ�
     {
         Noise_Timer -= Time.deltaTime;
         if (Noise_Timer < 0f)
@@ -102,13 +102,14 @@ public class Player : MonoBehaviour
             GameObject Noise = Instantiate(Noise_Prefab);
             Noise_Timer = 1f;
             Noise.transform.position = gameObject.transform.position;
+            Noise.transform.localScale = new Vector3(size, size, 1);
         }
     }
     void Update()
     {
         if (Player_State == State.Run)
         {
-            RunNoiseCreater();
+            RunNoiseCreater(10f);
         }
     }
     public static void Dead()

@@ -129,7 +129,11 @@ public class Playercontrol : MonoBehaviour
         //rigid.velocity = inputVec;
         //3. 위치 이동
         Vector2 nextVec = Inputvec * Player.Player_Speed * Time.fixedDeltaTime;
-        Rigid.MovePosition(Rigid.position + nextVec);
+
+        if (Isgrounded())
+        {
+            Rigid.MovePosition(Rigid.position + nextVec);
+        }
     }
     void FlipControl()
     {
@@ -149,15 +153,15 @@ public class Playercontrol : MonoBehaviour
             Debug.Log(Inventory.Bullets);
         }
     }
+    bool Isgrounded()
+    {
+        return Physics2D.Raycast(Rigid.position + Vector2.up, Vector3.down, 1.08f, LayerMask.GetMask("Ground")); //추후 캐릭터가 바뀔시 길이 변경 필요
+    }
     void OnMove(InputValue value) // 이동 함수
     {
         Inputvec = value.Get<Vector2>();
         Inputvec.y = 0f;
     }
-    //void OnRun()
-    //{
-    //    inputVec.x = inputVec.x * Player.RunSpeed;
-    //}
     void OnFlipA()
     {
         Playerdir = Vector3.left;
