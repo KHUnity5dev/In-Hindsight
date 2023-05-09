@@ -62,6 +62,7 @@ public class Playercontrol : MonoBehaviour
             Debug.Log(Inventory.Magazine);
             Anim.SetTrigger("Attack");
             Playerdir = point.normalized;
+            GunNoiseCreater();
             FlipControl();
             RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position + Vector2.up, point, 100f, LayerMask.GetMask("Enemy"));
             if (rayHit)
@@ -74,7 +75,7 @@ public class Playercontrol : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Invoke("Reload",1);
+            Invoke("Reload",1); // 1초 뒤에 리로드
         }
 
         Debug.DrawRay(Rigid.position + Vector2.up, Raydir, new Color(1, 0, 0)); // 상호 작용 레이
@@ -130,10 +131,9 @@ public class Playercontrol : MonoBehaviour
         //3. 위치 이동
         Vector2 nextVec = Inputvec * Player.Player_Speed * Time.fixedDeltaTime;
 
-        if (Isgrounded())
-        {
-            Rigid.MovePosition(Rigid.position + nextVec);
-        }
+
+        Rigid.MovePosition(Rigid.position + nextVec + new Vector2(0,Physics.gravity.y * Time.deltaTime));
+        
     }
     void FlipControl()
     {
@@ -171,5 +171,10 @@ public class Playercontrol : MonoBehaviour
     {
         Playerdir = Vector3.right;
         FlipControl();
+    }
+    void GunNoiseCreater()
+    {
+        Player.Noise_Timer = -1;
+        Player.NoiseCreater(Player.Gun_Noise);
     }
 }
