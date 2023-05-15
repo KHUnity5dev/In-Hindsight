@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
     
     private int slotCnt;
 
-
+    
     public static int Bullets = 100;
     public static int Maxmagazine = 10;
     public static int Magazine = 10;
@@ -43,6 +43,10 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         SlotCnt = 4;
+    }
+    public void Get_Item(int bullets)
+    {
+        Bullets += bullets;
     }
     public bool AddItem(Item _item)
     {
