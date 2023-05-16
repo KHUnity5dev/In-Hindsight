@@ -87,13 +87,6 @@ public class Player : MonoBehaviour
     {
         get { return Inst.m_runnoise; }
     }
-     
-    [SerializeField]
-    private float m_gunnoise = 20f;
-    public static float Gun_Noise
-    {
-        get { return Inst.m_gunnoise; }
-    }
     void Awake()
     {
         if(Inst != null)

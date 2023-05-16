@@ -172,7 +172,7 @@ public class Playercontrol : MonoBehaviour
     void GunNoiseCreater()
     {
         Player.Noise_Timer = -1;
-        Player.NoiseCreater(Player.Gun_Noise);
+        Player.NoiseCreater(Inventory.MyGun.Gun_Noise());
     }
     void Gunshot()
     {
@@ -190,7 +190,7 @@ public class Playercontrol : MonoBehaviour
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
-                rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(10); //Enemy가 피가 닳는 코드 한줄
+                rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy가 피가 닳는 코드 한줄
             }
             if  (rayHitobject)
             {
