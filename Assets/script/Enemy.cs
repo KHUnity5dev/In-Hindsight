@@ -9,37 +9,54 @@ public class Enemy : MonoBehaviour
     public EnemyStat enemyStat;
     public float AttackCoolTime;
     float CurAttackCoolTime;
+    Rigidbody2D rigid;
     GameObject Scan;
+    SpriteRenderer sprite;
     
     // Start is called before the first frame update
     void Start()
     {
-        CurAttackCoolTime = AttackCoolTime;
+        rigid = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        CurAttackCoolTime = AttackCoolTime; //기본 1초
     }
     
     // Update is called once per frame
     void Update()
     {   
         Scan = enemyAttack.Check();
-        if(Input.GetKeyDown(KeyCode.P)){
-            enemyMove.Chase(gameObject);
-        }
+        
     }
     void FixedUpdate() {
-        CurAttackCoolTime -= 0.02f;
+        
         if (enemyAttack.OnTarget){
+            transform.GetChild(0).gameObject.SetActive(true);// 대상 발견시 느낌표 뜸
+            CurAttackCoolTime -= 0.02f;
             if(CurAttackCoolTime <= 0.01f){
-                enemyAttack.Attack();
+                enemyAttack.Attack(Scan);
                 CurAttackCoolTime = AttackCoolTime;
             }
+        } else{
+            transform.GetChild(0).gameObject.SetActive(false); // 대상 미 발견시 느낌표 없앰
+            CurAttackCoolTime = AttackCoolTime;
         }
         if (!enemyMove.IsMove){
             enemyMove.Move();
         }
+        if(rigid.velocity.x !=0)
+            sprite.flipX = (rigid.velocity.x > 0)? false : true;
+
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Noise") {
             enemyMove.Chase(other.gameObject);//소음 감지됐을때의 행동 함수 호출
         }
+        if ( other.gameObject.name == "Door"){
+            other.gameObject.SendMessage("Get_Enemy_Interacted");
+            Debug.Log("SendMessage");
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D other) {
+        
     }
 }
