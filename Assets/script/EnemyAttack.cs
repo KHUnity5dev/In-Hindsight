@@ -14,11 +14,9 @@ public class EnemyAttack : MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
     }
-    public void Attack(GameObject scan){
+    public void Attack(){
         GameObject temp =  Instantiate(Bullet, transform.position, Quaternion.identity);
         Destroy(temp , 10);
-        // scan을 죽이는 코드
-        Player.Dead();
     }
     public GameObject Check()
     {
