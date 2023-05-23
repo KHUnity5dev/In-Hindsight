@@ -7,16 +7,17 @@ TagManager:
   - FieldItem
   - Dore
   - Enemy
+  - Noise
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Object
-  - 
-  - 
+  - Enemy
+  - Ground
   - 
   - 
   - 
