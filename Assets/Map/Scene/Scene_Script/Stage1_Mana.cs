@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Stage1_Mana : MonoBehaviour
 {
-
+    public void Restart_Level()
+    {
+        PlayerPrefs.SetInt("Stage", 1);
+        SceneManager.LoadScene("Stage1");
+    }
     public void Next_Level()
     {
         PlayerPrefs.SetInt("Stage", 2);
