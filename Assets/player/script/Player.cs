@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     {
         get { return Inst.playersight; }
         set { Inst.playersight = value; }
-    } 
+    }
     [SerializeField]
     private float speed = 3f; //�Ϲ� �ӵ�
     public static float Player_Speed
@@ -74,8 +74,19 @@ public class Player : MonoBehaviour
         get { return Inst.m_noiseprefab; }
     }
 
-    public float Noise_Timer = 1f; // ���� �ֱ�
-
+    [SerializeField]
+    private float m_noisetimer = 1f; // ���� �ֱ�
+    public static float Noise_Timer
+    {
+        get { return Inst.m_noisetimer; }
+        set { Inst.m_noisetimer = value; }
+    }
+    [SerializeField]
+    private float m_runnoise = 10f;
+    public static float Run_Noise
+    {
+        get { return Inst.m_runnoise; }
+    }
     void Awake()
     {
         if(Inst != null)
@@ -94,21 +105,22 @@ public class Player : MonoBehaviour
     //    playerSight = SightState.Normal;
     //    playerState = State.Idle;
     //}
-    public void RunNoiseCreater() // �޸��� ���� �ݶ��̴��� ����� �Լ�
+    static public void NoiseCreater(float size) // �޸��� ���� �ݶ��̴��� ����� �Լ�
     {
         Noise_Timer -= Time.deltaTime;
         if (Noise_Timer < 0f)
         {
             GameObject Noise = Instantiate(Noise_Prefab);
             Noise_Timer = 1f;
-            Noise.transform.position = gameObject.transform.position;
+            Noise.transform.position = Inst.gameObject.transform.position;
+            Noise.transform.localScale = new Vector3(size, size, 1);
         }
     }
     void Update()
     {
         if (Player_State == State.Run)
         {
-            RunNoiseCreater();
+            NoiseCreater(10f);
         }
     }
     public static void Dead()
