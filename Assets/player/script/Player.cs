@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         set { Inst.speed = value; }
     }
     [SerializeField]
-    private float runspeed = 2f; //�޸��� �ӵ� ���
+    private float runspeed = 2f; //�޸��� �ӵ� ���?
     public static float Run_Speed
     {
         get { return Inst.runspeed; }
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Inst = this; // �÷��̾ �����Ϸ��� �� �ڵ尡 ������� ����Ǿ���� 
+        Inst = this; // �÷��̾ �����Ϸ��� �� �ڵ尡 �������? ����Ǿ���� 
         Anim = GetComponent<Animator>();
         Renderer = GetComponent<SpriteRenderer>();
     }
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
     //    playerSight = SightState.Normal;
     //    playerState = State.Idle;
     //}
-    public void RunNoiseCreater() // �޸��� ���� �ݶ��̴��� ����� �Լ�
+    public void RunNoiseCreater() // �޸��� ���� �ݶ��̴��� �����? �Լ�
     {
         Noise_Timer -= Time.deltaTime;
         if (Noise_Timer < 0f)

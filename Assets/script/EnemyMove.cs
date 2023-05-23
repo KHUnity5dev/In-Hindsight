@@ -29,7 +29,6 @@ public class EnemyMove : MonoBehaviour
     {
         IsMove = true;
         patrolCoroutine = StartCoroutine(Patrol());//0번 종류의 Enemy순찰
-       
     }
     //Noise 방향으로 이동하는 Chase
     public void Chase(GameObject Noise)
@@ -69,8 +68,9 @@ public class EnemyMove : MonoBehaviour
             Debug.Log(PatrolArray[Enemynum,i]);
             Debug.Log(rigid.velocity);
             rigid.velocity = new Vector2(PatrolArray[Enemynum,i], rigid.velocity.y); //velocity는 원래 speed가 있고, 방향만 패턴Array에서 가져와서 곱함
+            IsMove = (i == 9) ? false : true;
             yield return new WaitForSeconds(2f);
         }
-    
+
     }
 }
