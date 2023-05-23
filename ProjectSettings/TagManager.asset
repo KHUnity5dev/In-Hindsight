@@ -8,6 +8,7 @@ TagManager:
   - Dore
   - Enemy
   - Noise
+  - Door
   layers:
   - Default
   - TransparentFX

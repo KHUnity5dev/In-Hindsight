@@ -12,45 +12,45 @@ public class Playercontrol : MonoBehaviour
     SpriteRenderer Spriterenderer;
     Animator Anim;
     Vector3 Raydir;
-    Vector3 Playerdir; // 1ÀÌ¸é ¿À¸¥ÂÊ -1ÀÌ¸é ¿ÞÂÊ
+    Vector3 Playerdir; // 1ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -1ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     public GameObject ActiveUI;
-    void Awake() // ½ÃÀÛÇÒ¶§ ÇÑ¹ø¸¸ ½ÇÇàµÇ´Â ÇÔ¼ö
+    void Awake() // ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     {
         Spriterenderer = GetComponent<SpriteRenderer>();
-        Rigid = GetComponent<Rigidbody2D>(); // getcomponent ¿ÀºêÁ§Æ®¿¡¼­ ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿À´Â ÇÔ¼ö
+        Rigid = GetComponent<Rigidbody2D>(); // getcomponent ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
         Anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update() // ÇÏ³ªÀÇ ÇÁ·¹ÀÓ¸¶´Ù È£ÃâµÇ´Â »ý¸í ÁÖ±â ÇÔ¼ö
+    void Update() // ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½Ô¼ï¿½
     {
         if (Inputvec == Vector2.zero)
             Anim.SetBool("isWalking", false);
         else
             Anim.SetBool("isWalking", true);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) // ´Þ¸®±â ½ÃÀÛ
+        if (Input.GetKeyDown(KeyCode.LeftShift)) // ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             Player.Player_Speed = Player.Player_Speed + 2f;
             Player.Player_State = Player.State.Run;
         }
-        if(Input.GetKeyUp(KeyCode.LeftShift)) // ´Þ¸®±â ³¡
+        if(Input.GetKeyUp(KeyCode.LeftShift)) // ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½
         {
             Player.Player_Speed = Player.Player_Speed - 2f;
             Player.Player_State = Player.State.Walk;
         }
 
-        if (Input.GetKeyDown(KeyCode.P)) // ´Þ¸®±â ½ÃÀÛ
+        if (Input.GetKeyDown(KeyCode.P)) // ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             Player.Dead();
         }
-        if (Playerdir==Vector3.left) // ÇÃ·¹ÀÌ¾îÀÇ ¹æÇâ È®ÀÎ
+        if (Playerdir==Vector3.left) // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         {
             Raydir = Vector3.left;
 
         }
-        else //ÇÃ·¹ÀÌ¾îÀÇ ¹æÇâ È®ÀÎ
+        else //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         {
             Raydir = Vector3.right;
         }
@@ -59,10 +59,10 @@ public class Playercontrol : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Invoke("Reload",1); // 1ÃÊ µÚ¿¡ ¸®·Îµå
+            Invoke("Reload",1); // 1ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½Îµï¿½
         }
 
-        Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, Raydir, new Color(1, 0, 0)); // »óÈ£ ÀÛ¿ë ·¹ÀÌ
+        Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, Raydir, new Color(1, 0, 0)); // ï¿½ï¿½È£ ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.E))
         {
             Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
@@ -76,7 +76,7 @@ public class Playercontrol : MonoBehaviour
                 {
                     Debug.Log(rayHitenemy.collider.name);
                     GameObject obj = rayHitenemy.collider.gameObject;
-                    if (obj.tag == "Enemy") // ¾Ï»ì
+                    if (obj.tag == "Enemy") // ï¿½Ï»ï¿½
                     {
                         Debug.Log("Enemy detected!!!!");
                         Anim.SetTrigger("Amsal!");
@@ -94,7 +94,7 @@ public class Playercontrol : MonoBehaviour
                 {
                     Debug.Log(rayHitobject.collider.name);
                     GameObject obj = rayHitobject.collider.gameObject;
-                    if(obj.tag == "Dore"){//¹®¿­±â
+                    if(obj.tag == "Door"){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         // Invoke("Get_Player_Interacted",0.1f);
                         obj.SendMessage("Get_Player_Interacted");
                     }
@@ -119,13 +119,13 @@ public class Playercontrol : MonoBehaviour
             }
         }
     }
-    void FixedUpdate() //¹°¸®¿¬»ê ÇÁ·¹ÀÓ¸¶´Ù È£ÃâµÇ´Â »ý¸íÁÖ±â ÇÔ¼ö
+    void FixedUpdate() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½Ô¼ï¿½
     {
-        //1. ÈûÀ» ÁØ´Ù
+        //1. ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½
         //rigid.AddForce(inputVec);
-        //2. ¼ÓµµÁ¦¾î
+        //2. ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½
         //rigid.velocity = inputVec;
-        //3. À§Ä¡ ÀÌµ¿
+        //3. ï¿½ï¿½Ä¡ ï¿½Ìµï¿½
         Vector2 nextVec = Inputvec * Player.Player_Speed * Time.fixedDeltaTime;
 
 
@@ -152,9 +152,9 @@ public class Playercontrol : MonoBehaviour
     }
     bool Isgrounded()
     {
-        return Physics2D.Raycast(Rigid.position + Vector2.up, Vector3.down, 1.08f, LayerMask.GetMask("Ground")); //ÃßÈÄ Ä³¸¯ÅÍ°¡ ¹Ù²ð½Ã ±æÀÌ º¯°æ ÇÊ¿ä
+        return Physics2D.Raycast(Rigid.position + Vector2.up, Vector3.down, 1.08f, LayerMask.GetMask("Ground")); //ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
     }
-    void OnMove(InputValue value) // ÀÌµ¿ ÇÔ¼ö
+    void OnMove(InputValue value) // ï¿½Ìµï¿½ ï¿½Ô¼ï¿½
     {
         Inputvec = value.Get<Vector2>();
         Inputvec.y = 0f;
@@ -177,7 +177,7 @@ public class Playercontrol : MonoBehaviour
     void Gunshot()
     {
         Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)) - (Vector3)(Rigid.position + Vector2.up);
-        if (Input.GetMouseButtonDown(0) && Inventory.Magazine > 0) // ÃÑ½î±â
+        if (Input.GetMouseButtonDown(0) && Inventory.Magazine > 0) // ï¿½Ñ½ï¿½ï¿½
         {
             Inventory.Magazine--;
             Debug.Log(Inventory.Magazine);
@@ -190,7 +190,7 @@ public class Playercontrol : MonoBehaviour
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
-                rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy°¡ ÇÇ°¡ ´â´Â ÄÚµå ÇÑÁÙ
+                rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemyï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
             }
             if  (rayHitobject)
             {
@@ -201,6 +201,6 @@ public class Playercontrol : MonoBehaviour
                 }
             }
         }
-        Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // ¸¶¿ì½º Æ÷ÀÎÅÍ ·¹ÀÌ
+        Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
