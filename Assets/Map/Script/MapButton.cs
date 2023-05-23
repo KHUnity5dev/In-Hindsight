@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class riciever : MonoBehaviour
 {
-    private void Get_Player_Interacted()
+    public void Get_Player_Interacted()
     {
         Debug.Log("pressed by player_button");
     }
-    private void Get_Enemy_Interacted()
+    public void Get_Enemy_Interacted()
     {
         Debug.Log("pressed by enemy_button");
     }
