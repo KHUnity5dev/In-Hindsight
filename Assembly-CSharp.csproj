@@ -53,41 +53,45 @@
     <UnityVersion>2021.3.21f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\player\script\Inventory.cs" />
+    <Compile Include="Assets\Map\Script\Red_Button.cs" />
     <Compile Include="Assets\script\NPC\QuestButton.cs" />
+    <Compile Include="Assets\Map\Scene\Scene_Script\Save_Mana.cs" />
     <Compile Include="Assets\player\script\Slot.cs" />
     <Compile Include="Assets\script\EnemyStat.cs" />
+    <Compile Include="Assets\Map\Scene\Scene_Script\Stage2_Mana.cs" />
+    <Compile Include="Assets\Map\Script\Scenemanager.cs" />
     <Compile Include="Assets\player\script\Itemeffect.cs" />
     <Compile Include="Assets\player\script\InventoryUI.cs" />
     <Compile Include="Assets\script\EnemyAttack.cs" />
+    <Compile Include="Assets\Map\Scene\Scene_Script\InitScene_Mana.cs" />
     <Compile Include="Assets\player\script\Itemhealingeffect.cs" />
     <Compile Include="Assets\script\Enemy.cs" />
     <Compile Include="Assets\player\script\Player.cs" />
+    <Compile Include="Assets\Map\Script\Gamemanager_map.cs" />
     <Compile Include="Assets\Map\Script\MapButton.cs" />
     <Compile Include="Assets\Map\Script\Door.cs" />
     <Compile Include="Assets\script\NPC\ActiveUI.cs" />
     <Compile Include="Assets\player\Hero Knight - Pixel Art\Demo\HeroKnight.cs" />
     <Compile Include="Assets\player\script\Playercontrol.cs" />
     <Compile Include="Assets\player\Hero Knight - Pixel Art\ColorSwap\ColorSwap_HeroKnight.cs" />
+    <Compile Include="Assets\Map\Scene\Scene_Script\Scene_Mana.cs" />
+    <Compile Include="Assets\Map\Script\Switc_Button.cs" />
+    <Compile Include="Assets\Map\Script\Explod.cs" />
     <Compile Include="Assets\script\NPC\ShopButton.cs" />
+    <Compile Include="Assets\sound\AudioManager.cs" />
     <Compile Include="Assets\player\Hero Knight - Pixel Art\Demo\Sensor_HeroKnight.cs" />
     <Compile Include="Assets\script\TempMove.cs" />
     <Compile Include="Assets\player\script\FieldItems.cs" />
     <Compile Include="Assets\player\script\Itemdatabase.cs" />
+    <Compile Include="Assets\Map\Scene\Scene_Script\Stage1_Mana.cs" />
     <Compile Include="Assets\player\script\Item.cs" />
     <Compile Include="Assets\player\script\Noise.cs" />
     <Compile Include="Assets\script\EnemyMove.cs" />
     <Compile Include="Assets\player\Hero Knight - Pixel Art\Demo\DestroyEvent_HeroKnight.cs" />
-    <Compile Include="Assets\Map\Script\Explod.cs" />
-    <Compile Include="Assets\Map\Scene\Scene_Script\Save_Mana.cs" />
-    <Compile Include="Assets\Map\Scene\Scene_Script\Scene_Mana.cs" />
-    <Compile Include="Assets\Map\Scene\Scene_Script\Stage1_Mana.cs" />
-    <Compile Include="Assets\Map\Scene\Scene_Script\Stage2_Mana.cs" />
-    <Compile Include="Assets\Map\Script\Red_Button.cs" />
-    <Compile Include="Assets\Map\Scene\Scene_Script\InitScene_Mana.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

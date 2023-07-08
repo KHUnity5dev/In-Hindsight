@@ -148,6 +148,7 @@ public class Playercontrol : MonoBehaviour
             Inventory.Bullets -= (Inventory.Maxmagazine - Inventory.Magazine);
             Inventory.Magazine = Inventory.Maxmagazine;
             Debug.Log(Inventory.Bullets);
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Reload);
         }
     }
     bool Isgrounded()
@@ -200,6 +201,7 @@ public class Playercontrol : MonoBehaviour
                     obj.SendMessage("Get_Player_Interacted");
                 }
             }
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
         }
         Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // 마우스 포인터 레이
     }

@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
         Inst = this; // �÷��̾ �����Ϸ��� �� �ڵ尡 ������� ����Ǿ���� 
         Anim = GetComponent<Animator>();
         Renderer = GetComponent<SpriteRenderer>();
+
     }
 
     //public void Init()
@@ -114,7 +115,9 @@ public class Player : MonoBehaviour
             Noise_Timer = 1f;
             Noise.transform.position = Inst.gameObject.transform.position;
             Noise.transform.localScale = new Vector3(size, size, 1);
+        
         }
+
     }
     void Update()
     {
@@ -129,5 +132,6 @@ public class Player : MonoBehaviour
         Inst.Anim.SetTrigger("isDead");
         Inst.GetComponent<Playercontrol>().enabled = false;
         Inst.GetComponent<PlayerInput>().enabled = false;
+        AudioManager.instance.PlayBgm(false);
     }
 }
