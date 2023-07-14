@@ -8,13 +8,12 @@ public class Stage1_Mana : MonoBehaviour
 {
     public void Restart_Level()
     {
-        PlayerPrefs.SetInt("Stage", 1);
-        SceneManager.LoadScene("Stage1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Next_Level()
     {
-        PlayerPrefs.SetInt("Stage", 2);
-        SceneManager.LoadScene("Stage2");
+        PlayerPrefs.SetString("Stage", "Stage2");
+        SceneManager.LoadScene("Init_Scene");
     }
     // Start is called before the first frame update
     void Start()
@@ -23,12 +22,12 @@ public class Stage1_Mana : MonoBehaviour
     }
 
     // Update is called once per frame
+    // 말해서, 인풋 메니저 쪽으로 옮기기.
     void Update()
     {
         if (Input.GetMouseButtonDown(2))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+            Next_Level();
         }
     }
 }

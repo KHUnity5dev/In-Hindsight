@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class EnemyStat : MonoBehaviour
 {
-    public float HP = 100;
+    public float bodyHP = 100; // 몸 피격용 HP
+    public float headHP = 50; // 머리 피격용 HP
     public GameObject[] DropItem;
+    public AudioClip deathSound; // 죽는 소리
     void Start() {
         
     }
     void FixedUpdate() {
-        // HP -= 0.2f;
-        // if(HP <= 0)
-        //     Die();//죽음
+    
     }
-    public void OnDamaged(float dmg){
-        HP -= dmg;
-        if(HP <= 0) {
-            Die();//죽음
-            //죽고나서 layer 죽은 enemy로 바꿔야함.
+    public void OnDamaged(float dmg)
+    {
+        bodyHP -= dmg;
+        if (bodyHP <= 0)
+        {
+            Die(); // 몸 피격으로 죽음
+        }
+    }
+    public void OnBodyDamaged(float dmg)
+    {
+        bodyHP -= dmg;
+        if (bodyHP <= 0)
+        {
+            Die(); // 몸 피격으로 죽음
+        }
+    }
+    public void OnHeadDamaged(float dmg)
+    {
+        headHP -= dmg;
+        if (headHP <= 0)
+        {
+            Die(); // 머리 피격으로 죽음
         }
     }
     void Die(){
@@ -27,7 +44,8 @@ public class EnemyStat : MonoBehaviour
             Instantiate(item, transform.position + Vector3.right*i, Quaternion.identity);
             i++;
         }//아이템 드랍
-        //죽는 소리 추가요망
+        AudioSource.PlayClipAtPoint(deathSound, transform.position); // 죽는 소리 재생
+        gameObject.layer = LayerMask.NameToLayer("DeadEnemy"); // 레이어 변경
         Destroy(gameObject,1.0f);//1초뒤 사망
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public bool IsMove;
+    bool IsBlock;
     public float speed; //이동 속도
     protected Vector2 direction; // Enemy가 이동하는 방향
     private Rigidbody2D rigid; // Rigidbody2D 컴포넌트
@@ -14,15 +15,20 @@ public class EnemyMove : MonoBehaviour
     public bool IsChase; //Chase해야될때 Enemy.cs에서 true로만들고 Chase들어갈때 false 만든다.
     private Coroutine patrolCoroutine; // Coroutine 담는 변수
     Vector2 Target;
+    SpriteRenderer sprite;
     void Start()
     {
+        IsBlock = false;
         Target = Vector2.zero;
         IsMove = false;
         IsChase = false;
-        PatrolArray = new float[,] {{speed,speed,speed,0,-speed,-speed,speed,0,-speed,-speed}};
+        PatrolArray = new float[3,12] {{speed,speed,speed,0,-speed,-speed,speed,0,-speed,-speed,0,0},
+                                    {speed,speed,-speed,-speed,-speed,-speed,speed,speed,speed,-speed,-speed,speed},
+                                    {speed,speed,speed,speed,-speed,-speed,-speed,-speed,-speed,-speed,speed,speed}};
         //PatrolArray 2차원배열 동적할당으로 패턴 넣어놓기
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = new Vector2(speed, 0);
+        sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void Move() //순찰
@@ -33,6 +39,7 @@ public class EnemyMove : MonoBehaviour
     //Noise 방향으로 이동하는 Chase
     public void Chase(GameObject Noise)
     {
+        Debug.Log("Chase");
         IsChase = true;
         if (patrolCoroutine != null)
         {
@@ -57,12 +64,28 @@ public class EnemyMove : MonoBehaviour
                 Target = Vector2.zero;
                 IsChase = false;
             }
+            LayerMask mask = LayerMask.GetMask("Object");
+            Debug.DrawRay(rigid.position + -Vector2.up*0.2f, 2 * Vector3.right * (sprite.flipX == false ? 1 : -1), new Color(1, 0, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position -Vector2.up*0.2f, 5 * Vector3.right * (sprite.flipX == false ? 1 : -1), 2, mask);
+            if (rayHit.collider != null){
+                Debug.Log(rayHit.collider.gameObject);
+                rayHit.collider.gameObject.SendMessage("IsOpen_Enemy_Interacted", gameObject);
+                if ( IsBlock == true){//door가 close(false)일 경우
+                    rayHit.collider.gameObject.SendMessage("Get_Enemy_Interacted");
+                    IsBlock = false;
+                    Debug.Log("열어");
+                }
+                Debug.Log("막혔어");
+            }
         }
+    }
+    public void Door_Is_Open(bool door){
+        IsBlock = !door;
     }
     IEnumerator Patrol()
     {
         //종류에 맞는 순찰패턴
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 12; i++)
         {
             Debug.Log(PatrolArray[Enemynum,i]);
             Debug.Log(rigid.velocity);

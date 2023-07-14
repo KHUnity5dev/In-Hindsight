@@ -66,7 +66,8 @@ public class Playercontrol : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
-            RaycastHit2D rayHitobject = Physics2D.Raycast(rayPosition, Raydir, 1f, LayerMask.GetMask("Object"));
+            LayerMask mask = LayerMask.GetMask("OpenDoor") | LayerMask.GetMask("Object");
+            RaycastHit2D rayHitobject = Physics2D.Raycast(rayPosition, Raydir, 1f, mask);
             RaycastHit2D rayHitenemy = Physics2D.Raycast(rayPosition, Raydir, 1f, LayerMask.GetMask("Enemy"));
             RaycastHit2D rayHitNPC = Physics2D.Raycast(rayPosition, Raydir, 1f, LayerMask.GetMask("NPC"));
 
@@ -148,6 +149,7 @@ public class Playercontrol : MonoBehaviour
             Inventory.Bullets -= (Inventory.Maxmagazine - Inventory.Magazine);
             Inventory.Magazine = Inventory.Maxmagazine;
             Debug.Log(Inventory.Bullets);
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Reload);
         }
     }
     bool Isgrounded()
@@ -200,6 +202,7 @@ public class Playercontrol : MonoBehaviour
                     obj.SendMessage("Get_Player_Interacted");
                 }
             }
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
         }
         Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // ���콺 ������ ����
     }

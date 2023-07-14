@@ -33,8 +33,8 @@ public class Enemy : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(true);// 대상 발견시 느낌표 뜸
             CurAttackCoolTime -= 0.02f;
             if(CurAttackCoolTime <= 0.01f){
-                enemyAttack.Attack(Scan);
                 CurAttackCoolTime = AttackCoolTime;
+                enemyAttack.Attack(Scan);
             }
         } else{
             transform.GetChild(0).gameObject.SetActive(false); // 대상 미 발견시 느낌표 없앰
@@ -51,10 +51,10 @@ public class Enemy : MonoBehaviour
         if(other.tag == "Noise") {
             enemyMove.Chase(other.gameObject);//소음 감지됐을때의 행동 함수 호출
         }
-        if ( other.gameObject.name == "Door"){
-            other.gameObject.SendMessage("Get_Enemy_Interacted");
-            Debug.Log("SendMessage");
-        }
+        // if ( other.gameObject.name == "Door"){
+        //     other.gameObject.SendMessage("Get_Enemy_Interacted");
+        //     Debug.Log("SendMessage");
+        // }
     }
     private void OnCollisionEnter2D(Collision2D other) {
         
