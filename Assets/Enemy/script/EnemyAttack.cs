@@ -15,8 +15,8 @@ public class EnemyAttack : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
     }
     public void Attack(GameObject scan){
-        GameObject temp =  Instantiate(Bullet, transform.position, Quaternion.identity);
-        Destroy(temp , 10);
+        // GameObject temp =  Instantiate(Bullet, transform.position, Quaternion.identity);
+        // Destroy(temp , 10);
         // scan을 죽이는 코드
         Player.Dead();
     }

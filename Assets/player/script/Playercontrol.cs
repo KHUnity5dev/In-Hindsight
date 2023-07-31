@@ -192,7 +192,8 @@ public class Playercontrol : MonoBehaviour
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
-                rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy�� �ǰ� ��� �ڵ� ����
+                // rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy�� �ǰ� ��� �ڵ� ����
+                obj.SendMessage("OnDamaged",Inventory.MyGun.Damage());
             }
             if  (rayHitobject)
             {

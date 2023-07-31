@@ -11,6 +11,9 @@ TagManager:
   - Door
   - Quest
   - Shop
+  - Stair
+  - Shootable
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - Object
   - Enemy
   - OpenDoor
-  - 
+  - NPC
   - 
   - 
   - 

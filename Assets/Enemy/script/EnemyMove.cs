@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    public bool IsBoss;
     public bool IsMove;
     bool IsBlock;
     public float speed; //이동 속도
@@ -89,8 +90,12 @@ public class EnemyMove : MonoBehaviour
         {
             Debug.Log(PatrolArray[Enemynum,i]);
             Debug.Log(rigid.velocity);
+            if(IsBoss){
+                IsMove = false;
+                yield return new WaitForSeconds(2f);
+            }
             rigid.velocity = new Vector2(PatrolArray[Enemynum,i], rigid.velocity.y); //velocity는 원래 speed가 있고, 방향만 패턴Array에서 가져와서 곱함
-            IsMove = (i == 9) ? false : true;
+            IsMove = (i == 11) ? false : true;
             yield return new WaitForSeconds(2f);
         }
 
