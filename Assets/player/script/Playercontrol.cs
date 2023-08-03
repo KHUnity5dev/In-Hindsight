@@ -11,8 +11,7 @@ public class Playercontrol : MonoBehaviour
     Rigidbody2D Rigid;
     SpriteRenderer Spriterenderer;
     Animator Anim;
-    Vector3 Raydir;
-    Vector3 Playerdir; // 1�̸� ������ -1�̸� ����
+    Vector2 Playerdir = Vector2.right; 
 
     public GameObject ActiveUI;
     void Awake() // �����Ҷ� �ѹ��� ����Ǵ� �Լ�
@@ -34,6 +33,7 @@ public class Playercontrol : MonoBehaviour
         {
             Player.Player_Speed = Player.Player_Speed + 2f;
             Player.Player_State = Player.State.Run;
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Footstep);
         }
         if(Input.GetKeyUp(KeyCode.LeftShift)) // �޸��� ��
         {
@@ -45,35 +45,33 @@ public class Playercontrol : MonoBehaviour
         {
             Player.Dead();
         }
-        if (Playerdir==Vector3.left) // �÷��̾��� ���� Ȯ��
-        {
-            Raydir = Vector3.left;
-
-        }
-        else //�÷��̾��� ���� Ȯ��
-        {
-            Raydir = Vector3.right;
-        }
 
         Gunshot();
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Invoke("Reload",1); // 1�� �ڿ� ���ε�
+            Invoke("Reload",1);
         }
 
-        Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, Raydir, new Color(1, 0, 0)); // ��ȣ �ۿ� ����
+        Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, 5*Playerdir, new Color(1, 0, 0));
+
+
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("#####"+Playerdir);
             Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
             LayerMask mask = LayerMask.GetMask("OpenDoor") | LayerMask.GetMask("Object");
-            RaycastHit2D rayHitobject = Physics2D.Raycast(rayPosition, Raydir, 1f, mask);
-            RaycastHit2D rayHitenemy = Physics2D.Raycast(rayPosition, Raydir, 1f, LayerMask.GetMask("Enemy"));
-            RaycastHit2D rayHitNPC = Physics2D.Raycast(rayPosition, Raydir, 1f, LayerMask.GetMask("NPC"));
+            RaycastHit2D rayHitobj;
+            RaycastHit2D rayHitenemy;
+            RaycastHit2D rayHitNPC;
+            rayHitobj = Physics2D.Raycast(rayPosition, Playerdir, 1f, mask);
+            rayHitenemy = Physics2D.Raycast(rayPosition, Playerdir, 1f, LayerMask.GetMask("Enemy"));
+            rayHitNPC = Physics2D.Raycast(rayPosition, Playerdir, 1f, LayerMask.GetMask("NPC"));
+
 
             if (rayHitenemy)
             {
-                if (rayHitenemy.distance < 0.5f)
+                if (rayHitenemy.distance < 0.5f || rayHitobj.distance > -0.5f)
                 {
                     Debug.Log(rayHitenemy.collider.name);
                     GameObject obj = rayHitenemy.collider.gameObject;
@@ -83,21 +81,22 @@ public class Playercontrol : MonoBehaviour
                         Anim.SetTrigger("Amsal!");
                         obj.GetComponent<EnemyStat>().OnDamaged(100);
                     }
-                    else if( obj.tag == "Dead_Enemy")
+                    else if (obj.tag == "Dead_Enemy")
                     {
                         obj.SendMessage("Get_Enemy_Item");
                     }
                 }
             }
-            else if (rayHitobject)
+            if (rayHitobj)
             {
-                if (rayHitobject.distance < 0.5f)
+                if (rayHitobj.distance < 0.5f || rayHitobj.distance > -0.5f)
                 {
-                    Debug.Log(rayHitobject.collider.name);
-                    GameObject obj = rayHitobject.collider.gameObject;
+                    Debug.Log(rayHitobj.collider.name);
+                    GameObject obj = rayHitobj.collider.gameObject;
                     if(obj.tag == "Door"){//������
                         // Invoke("Get_Player_Interacted",0.1f);
                         obj.SendMessage("Get_Player_Interacted");
+                        Debug.Log("dddddddddd");
                     }
                     else if(obj.tag == "Stair")
                     {
@@ -111,7 +110,7 @@ public class Playercontrol : MonoBehaviour
             }
             else if (rayHitNPC.collider != null)
             {
-                if (rayHitNPC.distance < 0.5f)
+                if (rayHitNPC.distance < 0.5f || rayHitobj.distance > -0.5f)
                 {
                     Debug.Log(rayHitNPC.collider.name);
                     GameObject obj = rayHitNPC.collider.gameObject;
@@ -158,17 +157,18 @@ public class Playercontrol : MonoBehaviour
     }
     void OnMove(InputValue value) // �̵� �Լ�
     {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Footstep);
         Inputvec = value.Get<Vector2>();
         Inputvec.y = 0f;
     }
     void OnFlipA()
     {
-        Playerdir = Vector3.left;
+        Playerdir = Vector2.left;
         FlipControl();
     }
     void OnFlipD()
     {
-        Playerdir = Vector3.right;
+        Playerdir = Vector2.right;
         FlipControl();
     }
     void GunNoiseCreater()
@@ -192,8 +192,8 @@ public class Playercontrol : MonoBehaviour
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
-                // rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy�� �ǰ� ��� �ڵ� ����
-                obj.SendMessage("OnDamaged",Inventory.MyGun.Damage());
+                //rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy�� �ǰ� ��� �ڵ� ����
+                obj.SendMessage("OnDamaged", Inventory.MyGun.Damage());
             }
             if  (rayHitobject)
             {
