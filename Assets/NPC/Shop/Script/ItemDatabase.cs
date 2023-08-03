@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
-    public int money;
+    // public int money; -> µ·Àº PlayerPrefs·Î..
     private void Awake()
     {
         instance = this;

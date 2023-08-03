@@ -15,7 +15,7 @@ public class QuestManager : MonoBehaviour
         defaultQuest = new QuestData("00", "",
             "",
             "0", false);
-        questList = new List<QuestData>(); 
+        questList = new List<QuestData> (); 
         GenerateData();// 전체 의뢰 목록 생성
     }
 

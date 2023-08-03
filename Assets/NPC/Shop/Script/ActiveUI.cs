@@ -64,7 +64,7 @@ public class ActiveUI : MonoBehaviour
         }
     }
 
-    void ActiveQuestUI()
+    public void ActiveQuestUI()
     {
         if (isActionQuest) //끄기
         {
@@ -73,12 +73,13 @@ public class ActiveUI : MonoBehaviour
         else //켜기
         {
             isActionQuest = true;
+            QuestUI.SetActive(isActionQuest);
             questManager.UpdateList();
         }
         QuestUI.SetActive(isActionQuest);
     }
 
-    void ActiveShopUI()
+     void ActiveShopUI()
     {
         if (isActionShop) //끄기
         {
@@ -98,6 +99,17 @@ public class ActiveUI : MonoBehaviour
             }
         }
         ShopUI.SetActive(isActionShop);
+        InvenUI.SetActive(isActionInv);
+    }
+    public void CloseShopUI()
+    {
+        isActionShop = false;
+        ShopUI.SetActive(isActionShop);
+    }
+    public void CloseInvUI()
+    {
+        isActionInv = false;
+        // to do : 인벤토리 상점모드 비활성화하기
         InvenUI.SetActive(isActionInv);
     }
 }
