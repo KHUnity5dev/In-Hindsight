@@ -15,10 +15,10 @@ public class Stage1_Mana : MonoBehaviour
         PlayerPrefs.SetString("Stage", "Stage2");
         SceneManager.LoadScene("Init_Scene");
     }
-    // Start is called before the first frame update
-    void Start()
+    public void Next_Level(int level)
     {
-        
+        PlayerPrefs.SetString("Stage", "Stage2");
+        SceneManager.LoadScene("Init_Scene");
     }
 
     // Update is called once per frame

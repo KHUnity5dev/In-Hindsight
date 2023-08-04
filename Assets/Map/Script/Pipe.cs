@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explod : MonoBehaviour
+public class Pipe : MonoBehaviour
 {
-
+    private GameObject Smoke;
     public void Get_Player_Shooted()
     {
-        Destroy(gameObject);
+        Instantiate(Smoke, transform);
     }
 }

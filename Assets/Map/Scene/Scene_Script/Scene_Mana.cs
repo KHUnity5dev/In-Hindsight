@@ -10,22 +10,10 @@ public class Scene_Mana : MonoBehaviour
 
     public void Restart_Level()
     {
-        Stage_Manager.SendMessage("Next_Level");
+        Stage_Manager.SendMessage("Restart_Level");
     }
-    public void Load_Level()
+    public void Load_Level(int level)
     {
-        Stage_Manager.SendMessage("Next_Level");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Stage_Manager.SendMessage("Next_Level", level);
     }
 }

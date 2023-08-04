@@ -21,7 +21,6 @@ public class InitScene_Mana : MonoBehaviour
             StartCoroutine(LoadSceneAsync("Stage1"));
         }
 
-
     }
 
     IEnumerator LoadSceneAsync(string scenename)

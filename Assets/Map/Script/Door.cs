@@ -6,7 +6,7 @@ public class Door : MonoBehaviour
 {
  private BoxCollider2D Door_Physical_Collider;
     private Animator animator;
-    public void Get_Player_Interacted()
+    public void Get_Player_Interacted(GameObject Player)
     {
         Door_Physical_Collider = GetComponent<BoxCollider2D>();
         Door_Physical_Collider.isTrigger = !Door_Physical_Collider.isTrigger;
@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("Is_Open", !animator.GetBool("Is_Open"));
     }
-    public void Get_Enemy_Interacted()
+    public void Get_Enemy_Interacted(GameObject enemy)
     {
         Door_Physical_Collider = GetComponent<BoxCollider2D>();
         Door_Physical_Collider.isTrigger = !Door_Physical_Collider.isTrigger;
