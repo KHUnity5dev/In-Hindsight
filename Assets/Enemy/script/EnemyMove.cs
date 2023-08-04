@@ -19,13 +19,15 @@ public class EnemyMove : MonoBehaviour
     SpriteRenderer sprite;
     void Start()
     {
+        Enemynum = gameObject.GetComponent<Enemy>().Enemynum;
         IsBlock = false;
         Target = Vector2.zero;
         IsMove = false;
         IsChase = false;
-        PatrolArray = new float[3,12] {{speed,speed,speed,0,-speed,-speed,speed,0,-speed,-speed,0,0},
+        PatrolArray = new float[4,12] {{speed,speed,speed,0,-speed,-speed,speed,0,-speed,-speed,0,0},
                                     {speed,speed,-speed,-speed,-speed,-speed,speed,speed,speed,-speed,-speed,speed},
-                                    {speed,speed,speed,speed,-speed,-speed,-speed,-speed,-speed,-speed,speed,speed}};
+                                    {speed,speed,speed,speed,-speed,-speed,-speed,-speed,-speed,-speed,speed,speed},
+                                    {0,0,0,0,0,0,0,0,0,0,0,0}};
         //PatrolArray 2차원배열 동적할당으로 패턴 넣어놓기
         rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = new Vector2(speed, 0);

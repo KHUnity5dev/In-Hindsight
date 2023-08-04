@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int Enemynum; //Enemy 종류번호
     public bool IsBoss;
     public EnemyAttack enemyAttack;
     public EnemyMove enemyMove;
