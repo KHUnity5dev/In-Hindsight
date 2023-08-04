@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Light : MonoBehaviour
 {
-    private GameObject Dark;
+
+    public GameObject Dark;
     public void Get_Player_Shooted()
     {
+        Debug.Log("444");
         Instantiate(Dark, transform);
     }
 }

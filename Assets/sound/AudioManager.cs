@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
 
     public enum Sfx // 효과음 열거
     {
-        Reload, Gunshot
+        Reload, Gunshot, Footstep,
     }
 
     private void Awake()

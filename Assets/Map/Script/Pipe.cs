@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private GameObject Smoke;
+    public GameObject Smoke;
     public void Get_Player_Shooted()
     {
+        Debug.Log("666");
         Instantiate(Smoke, transform);
     }
 }

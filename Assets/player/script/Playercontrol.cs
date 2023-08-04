@@ -95,16 +95,16 @@ public class Playercontrol : MonoBehaviour
                     GameObject obj = rayHitobj.collider.gameObject;
                     if(obj.tag == "Door"){//������
                         // Invoke("Get_Player_Interacted",0.1f);
-                        obj.SendMessage("Get_Player_Interacted");
+                        obj.SendMessage("Get_Player_Interacted", gameObject);
                         Debug.Log("dddddddddd");
                     }
                     else if(obj.tag == "Stair")
                     {
-                        obj.SendMessage("Get_Player_Interacted");
+                        obj.SendMessage("Get_Player_Interacted", gameObject);
                     }
                     else if (obj.tag == "Box")
                     {
-                        obj.SendMessage("Get_Player_Interacted");
+                        obj.SendMessage("Get_Player_Interacted", gameObject);
                     }
                 }
             }
@@ -188,7 +188,7 @@ public class Playercontrol : MonoBehaviour
             GunNoiseCreater();
             FlipControl();
             RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position + Vector2.up, point, 100f, LayerMask.GetMask("Enemy"));
-            RaycastHit2D rayHitobject = Physics2D.Raycast(Rigid.position + Vector2.up, point, 100f, LayerMask.GetMask("Enemy"));
+            RaycastHit2D rayHitobject = Physics2D.Raycast(Rigid.position + Vector2.up, point, 100f, LayerMask.GetMask("Object"));
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
@@ -198,9 +198,10 @@ public class Playercontrol : MonoBehaviour
             if  (rayHitobject)
             {
                 GameObject obj = rayHitobject.collider.gameObject;
-                if (obj.tag == "Light")
+                if (obj.tag == "Shootable")
                 {
-                    obj.SendMessage("Get_Player_Interacted");
+                    obj.SendMessage("Get_Player_Shooted");
+                    Debug.Log("Shootable");
                 }
             }
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
