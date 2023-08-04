@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public int Enemynum; //Enemy 종류번호
     Rigidbody2D rigid;
     SpriteRenderer sprite;
     public GameObject Bullet;
     public bool OnTarget;
+    public float AttackRange = 5;
     private void Start()
     {
+        Enemynum = gameObject.GetComponent<Enemy>().Enemynum;
         OnTarget = false;
         rigid = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -23,21 +26,29 @@ public class EnemyAttack : MonoBehaviour
     public GameObject Check()
     {
         LayerMask mask = LayerMask.GetMask("Player") | LayerMask.GetMask("Object"); //Player와 Object만 검출
-        RaycastHit2D[] rayHit = new RaycastHit2D[5];
-        Vector3[] Dir = new Vector3[5];
-        Dir[0] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1);
-        Dir[1] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.up * 2;
-        Dir[2] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.down * 2;
-        Dir[3] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.up;
-        Dir[4] = 5 * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.down;
-
+        RaycastHit2D[] rayHit;
+        Vector3[] Dir;
+        if(Enemynum == 3){
+            Dir = new Vector3[1];
+            rayHit = new RaycastHit2D[1];
+            Vector3 tempVector = new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z),
+                                         Mathf.Sin(transform.rotation.eulerAngles.z) , 0);
+            Dir[0] = AttackRange * tempVector * (sprite.flipX == false ? 1 : -1);
+        } else{
+            Dir = new Vector3[5];
+            rayHit= new RaycastHit2D[5];
+            Dir[0] = AttackRange * Vector3.right * (sprite.flipX == false ? 1 : -1);
+            Dir[1] = AttackRange * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.up * 2;
+            Dir[2] = AttackRange * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.down * 2;
+            Dir[3] = AttackRange * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.up;
+            Dir[4] = AttackRange * Vector3.right * (sprite.flipX == false ? 1 : -1) + Vector3.down;
+        }
 
         GameObject Return = null;
-        for (int i = 0; i < 5; i++){
-
+        for (int i = 0; i < Dir.Length; i++){
             Debug.DrawRay(rigid.position, Dir[i], new Color(0, 1, 0));
             rayHit[i] = Physics2D.Raycast
-                (rigid.position, Dir[i], 5, mask);
+                (rigid.position, Dir[i], AttackRange, mask);
             if (rayHit[i].collider != null)
             {
                 Return = rayHit[i].transform.gameObject;
