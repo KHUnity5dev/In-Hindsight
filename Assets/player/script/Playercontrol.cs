@@ -143,11 +143,11 @@ public class Playercontrol : MonoBehaviour
     }
     void Reload()
     {
-        if (Inventory.Bullets > 0 && Inventory.Magazine < Inventory.Maxmagazine)
+        if (PlayerInventory.Bullets > 0 && PlayerInventory.Magazine < PlayerInventory.Maxmagazine)
         {
-            Inventory.Bullets -= (Inventory.Maxmagazine - Inventory.Magazine);
-            Inventory.Magazine = Inventory.Maxmagazine;
-            Debug.Log(Inventory.Bullets);
+            PlayerInventory.Bullets -= (PlayerInventory.Maxmagazine - PlayerInventory.Magazine);
+            PlayerInventory.Magazine = PlayerInventory.Maxmagazine;
+            Debug.Log(PlayerInventory.Bullets);
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Reload);
         }
     }
@@ -174,38 +174,37 @@ public class Playercontrol : MonoBehaviour
     void GunNoiseCreater()
     {
         Player.Noise_Timer = -1;
-        Player.NoiseCreater(Inventory.MyGun.Gun_Noise());
+        Player.NoiseCreater(PlayerInventory.MyGun.Gun_Noise());
     }
     void Gunshot()
     {
         Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)) - (Vector3)(Rigid.position + Vector2.up);
-        if (Input.GetMouseButtonDown(0) && Inventory.Magazine > 0) // �ѽ��
+        if (Input.GetMouseButtonDown(0) && PlayerInventory.Magazine > 0) // �ѽ��
         {
-            Inventory.Magazine--;
-            Debug.Log(Inventory.Magazine);
+            PlayerInventory.Magazine--;
+            Debug.Log(PlayerInventory.Magazine);
             Anim.SetTrigger("Attack");
             Playerdir = point.normalized;
             GunNoiseCreater();
             FlipControl();
-            RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position + Vector2.up, point, 100f, LayerMask.GetMask("Enemy"));
-            RaycastHit2D rayHitobject = Physics2D.Raycast(Rigid.position + Vector2.up, point, 100f, LayerMask.GetMask("Object"));
+            RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position, point, 10f, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Object"));
+
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
-                //rayHit.transform.gameObject.GetComponent<EnemyStat>().OnDamaged(Inventory.MyGun.Damage()); //Enemy�� �ǰ� ��� �ڵ� ����
-                obj.SendMessage("OnDamaged", Inventory.MyGun.Damage());
-            }
-            if  (rayHitobject)
-            {
-                GameObject obj = rayHitobject.collider.gameObject;
-                if (obj.tag == "Shootable")
+                if (obj.tag == "Enemy")
+                {
+                    obj.SendMessage("OnDamaged", PlayerInventory.MyGun.Damage());
+                }
+                else if (obj.tag == "Shootable")
                 {
                     obj.SendMessage("Get_Player_Shooted");
-                    Debug.Log("Shootable");
                 }
+                Debug.Log(obj.name);
             }
+
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
         }
-        Debug.DrawRay(Rigid.position + Vector2.up, point, new Color(1, 0, 1)); // ���콺 ������ ����
+        Debug.DrawRay(Rigid.position, point, new Color(1, 0, 1)); // ���콺 ������ ����
     }
 }
