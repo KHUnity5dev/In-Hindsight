@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     Animator Anim;
     SpriteRenderer Renderer;
-
+    BoxCollider2D BoxCollider;
     private static Player Inst;  // ����ƽ �÷��̾� ��ü �ϳ� �ۿ� �������� �ʴ´�.
     public enum State
     {
@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
         Inst = this; // �÷��̾ �����Ϸ��� �� �ڵ尡 ������� ����Ǿ���� 
         Anim = GetComponent<Animator>();
         Renderer = GetComponent<SpriteRenderer>();
+        BoxCollider = GetComponent<BoxCollider2D>();
 
     }
 
@@ -130,6 +131,8 @@ public class Player : MonoBehaviour
     {
         Player_State = State.Dead;
         Inst.Anim.SetTrigger("isDead");
+        Inst.BoxCollider.size = new Vector2(1.245603f, 1.234156f);
+        Inst.BoxCollider.offset = new Vector2(-0.3350806f, 0.293649f);
         Inst.GetComponent<Playercontrol>().enabled = false;
         Inst.GetComponent<PlayerInput>().enabled = false;
         AudioManager.instance.PlayBgm(false);

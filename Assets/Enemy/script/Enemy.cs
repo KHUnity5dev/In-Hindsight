@@ -59,14 +59,12 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Noise") {
-            enemyMove.Chase(other.gameObject);//소음 감지됐을때의 행동 함수 호출
+            if(Enemynum != 3)
+                enemyMove.Chase(other.gameObject);//소음 감지됐을때의 행동 함수 호출
         }
         // if ( other.gameObject.name == "Door"){
         //     other.gameObject.SendMessage("Get_Enemy_Interacted");
         //     Debug.Log("SendMessage");
         // }
-    }
-    private void OnCollisionEnter2D(Collision2D other) {
-        
     }
 }
