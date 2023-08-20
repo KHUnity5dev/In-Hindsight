@@ -5,19 +5,32 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor.UIElements;
 
-public class ShopSlot : MonoBehaviour
+public class ShopSlot : MonoBehaviour //상점 개별 슬롯 관리
 {
     public int slotnum;
     public ItemInfo item;
     public Image itemIcon;
     public Text itemText;
+    public Text itemCost;
     public bool soldOut = false;
+
+    public BuySlot buySlot;
 
     public void UpdateSlotUI()
     {
-        itemIcon.sprite = item.itemImage;
-        itemText.text = item.itemName;
-        itemIcon.gameObject.SetActive(true);
+        if(item == null) { 
+            itemIcon.gameObject.SetActive(false);
+            itemText.text = "";
+            itemCost.text = "";
+            GetComponent<Button>().interactable = false;
+        }
+        else {
+            itemIcon.sprite = item.itemImage;
+            itemText.text = item.itemName;
+            itemCost.text = item.itemCost.ToString();
+            itemIcon.gameObject.SetActive(true);
+        }
+        
     }
     public void RemoveSlot()
     {
@@ -25,15 +38,23 @@ public class ShopSlot : MonoBehaviour
         itemIcon.gameObject.SetActive(false);
     }
 
-    //public void OnPointerUp(PointerEventData eventData)
-    //{
-    //    if (item != null)
-    //    {
-    //        if (ItemDatabase.instance.money >= item.itemCost && !soldOut)
-    //        {
-    //            ItemDatabase.instance.money -= item.itemCost;
-    //            Inven.instance.AddItem(item);
-    //        }
-    //    }
-    //}
+    public void OnClick()
+    {
+        buySlot.item = item;
+        buySlot.UpdateSlotUI();
+    }
+
+    /* 마우스 아이템 위에 올리면 아이템 정보 나오게.. 할수있을까
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (item != null)
+        {
+            if (ItemDatabase.instance.money >= item.itemCost && !soldOut)
+            {
+                ItemDatabase.instance.money -= item.itemCost;
+                Inven.instance.AddItem(item);
+            }
+        }
+    }
+    */
 }

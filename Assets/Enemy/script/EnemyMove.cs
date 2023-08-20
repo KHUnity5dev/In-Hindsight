@@ -74,7 +74,7 @@ public class EnemyMove : MonoBehaviour
                 Debug.Log(rayHit.collider.gameObject);
                 rayHit.collider.gameObject.SendMessage("IsOpen_Enemy_Interacted", gameObject);
                 if ( IsBlock == true){//door가 close(false)일 경우
-                    rayHit.collider.gameObject.SendMessage("Get_Enemy_Interacted");
+                    rayHit.collider.gameObject.SendMessage("Get_Enemy_Interacted", gameObject);
                     IsBlock = false;
                     Debug.Log("열어");
                 }

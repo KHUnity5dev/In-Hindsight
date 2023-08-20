@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class QuestDes : MonoBehaviour
 {
     public GameObject DesPanel;
-    public QuestData questData;
-    public GameObject Scene_Manager;
+    private QuestData questData;
+    private GameObject Scene_Manager;
     bool isActive;
 
     private void Start()
     {
         isActive = false;
+        Scene_Manager = GameObject.Find("SceneMana");
     }
 
     public void UpdatePanel(QuestData _questData)
