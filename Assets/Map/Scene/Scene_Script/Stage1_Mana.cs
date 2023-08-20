@@ -14,12 +14,12 @@ public class Stage1_Mana : MonoBehaviour
     {
         PlayerPrefs.SetString("Stage", "Stage2");
     }*/
-    public void Next_Level(int level)
+    public void Next_Level(string level)
     {
         Debug.Log("Level is ");
         Debug.Log(level);
         PlayerPrefs.SetString("Stage", "Stage2");
-        SceneManager.LoadScene("Stage" + level.ToString());
+        SceneManager.LoadScene("Stage" + level);
     }
 
     // Update is called once per frame

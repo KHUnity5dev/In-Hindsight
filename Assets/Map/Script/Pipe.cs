@@ -9,5 +9,8 @@ public class Pipe : MonoBehaviour
     {
         Debug.Log("666");
         Instantiate(Smoke, transform);
+
+        gameObject.layer = 8;
+
     }
 }
