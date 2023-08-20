@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveUI : MonoBehaviour
+public class ActiveUI : MonoBehaviour //Player의 호출을 받아 UI활성화
 {
     public GameObject ShopUI;
-    public GameObject InvenUI;
     public GameObject QuestUI;
 
     bool isActionShop = false;
     bool isActionQuest = false;
-    bool isActionInv = false;
 
     //shop
     public ShopData shopData;
     public ShopSlot[] shopSlots;
     public Transform shopHolder;
+    public BuySlot buyslot;
 
     //quest
     public QuestManager questManager;
+    public GameObject QuestDesPanel;
 
 
 
@@ -36,7 +36,6 @@ public class ActiveUI : MonoBehaviour
     private void Start() //UI초기화
     {
         ShopUI.SetActive(isActionShop);
-        InvenUI.SetActive(isActionInv);
         QuestUI.SetActive(isActionQuest);
 
         //상점slot 불러오기
@@ -47,28 +46,26 @@ public class ActiveUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) // esc키 누를 시 모든 UI 끄기
         {
-            if (isActionQuest) isActionQuest = false;
+            if (isActionQuest)
+            {
+                QuestDesPanel.SetActive(false);
+                isActionQuest = false;
+            } 
             if (isActionShop)
             {
                 isActionShop = false;
-                isActionInv = false;
             }
             ShopUI.SetActive(isActionShop);
-            InvenUI.SetActive(isActionShop);
             QuestUI.SetActive(isActionQuest);
-        }
-        if (Input.GetKeyDown(KeyCode.I)&&!isActionShop) // I키로 인벤토리UI 켜고끄기
-        {
-            isActionInv = !isActionInv;
-            InvenUI.SetActive(isActionInv);
         }
     }
 
     public void ActiveQuestUI()
     {
-        if (isActionQuest) //끄기
+        if (isActionQuest&&QuestDesPanel.activeSelf==false) //끄기
         {
             isActionQuest = false;
+            QuestDesPanel.SetActive(false);
         }
         else //켜기
         {
@@ -83,33 +80,35 @@ public class ActiveUI : MonoBehaviour
     {
         if (isActionShop) //끄기
         {
-            isActionInv = false;
+            InvInfo.Instance.CloseShopModeUI();
             isActionShop = false;
         }
         else //켜기
         {
-            isActionInv = true;
+            InvInfo.Instance.ActiveShopModeUI();
             isActionShop = true;
-
+            buyslot.RemoveSlotUI();
             // 슬롯마다 상점데이터에 따라 업데이트
-            for (int i = 0; i < shopData.stocks.Count; i++)
+            for (int i = 0; i < shopSlots.Length ; i++)
             {
-                shopSlots[i].item = shopData.stocks[i];
+                if (i < shopData.stocks.Count) {
+                    shopSlots[i].item = shopData.stocks[i];
+                }
+                else
+                {
+                    shopSlots[i].item = null;
+                }
                 shopSlots[i].UpdateSlotUI();
             }
+            InvInfo.Instance.ActiveShopModeUI();
         }
         ShopUI.SetActive(isActionShop);
-        InvenUI.SetActive(isActionInv);
     }
+
     public void CloseShopUI()
     {
         isActionShop = false;
         ShopUI.SetActive(isActionShop);
-    }
-    public void CloseInvUI()
-    {
-        isActionInv = false;
-        // to do : 인벤토리 상점모드 비활성화하기
-        InvenUI.SetActive(isActionInv);
+        InvInfo.Instance.CloseShopModeUI();
     }
 }
