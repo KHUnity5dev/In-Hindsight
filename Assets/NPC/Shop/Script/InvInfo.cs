@@ -9,21 +9,21 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
 {
     public GameObject inventoryPanel;
     private bool isActionInv = false;
-    private bool isShopMode = false;
+    public bool isShopMode = false;
 
     private InvSlot[] slots; //인벤토리 슬롯들
     public Transform slotHolder; //인벤토리 슬롯의 부모객체
 
-    private List<ItemInfo> Invenitems = new List<ItemInfo>(); //인벤토리아이템 리스트
-    private List<int> InvenCnt = new List<int>(); //인벤토리 아이템 수량 리스트
+    public List<ItemInfo> Invenitems = new List<ItemInfo>(); //인벤토리아이템 리스트
+    public List<int> InvenCnt = new List<int>(); //인벤토리 아이템 수량 리스트
     private List<ItemInfo> SaveItemList = new List<ItemInfo>();
     private List<int> SaveItemCnt = new List<int>();
     private int SaveMoney;
     public Text moneyText;
     public int StartMoney; //플레이어 시작 돈
 
-    private static InvInfo instance = null; //싱글톤
-
+    //**싱글톤
+    private static InvInfo instance = null; 
     private void Awake()
     {
         if (null == instance)
@@ -55,7 +55,7 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
             return instance;
         }
     }
-
+    //**
     void Start()
     {
         inventoryPanel.SetActive(isActionInv);
@@ -64,7 +64,7 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         RedrawSlotUI();
     }
     
-    void RedrawSlotUI() //인벤토리 UI그리기
+    public void RedrawSlotUI() //인벤토리 UI그리기
     {
         for(int i = 0; i < slots.Length; i++)
         {
