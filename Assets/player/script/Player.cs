@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Animator Anim;
     SpriteRenderer Renderer;
     BoxCollider2D BoxCollider;
+    
     private static Player Inst;  // ����ƽ �÷��̾� ��ü �ϳ� �ۿ� �������� �ʴ´�.
     public enum State
     {
@@ -87,6 +88,12 @@ public class Player : MonoBehaviour
     {
         get { return Inst.m_runnoise; }
     }
+    [SerializeField]
+    private Scene_Mana m_scenemanager;
+    public static Scene_Mana Scene_Mana
+    {
+        get { return Inst.m_scenemanager; }
+    }
     void Awake()
     {
         if(Inst != null)
@@ -131,6 +138,7 @@ public class Player : MonoBehaviour
     {
         Player_State = State.Dead;
         Inst.Anim.SetTrigger("isDead");
+        Inst.m_scenemanager.SendMessage("GameExit");
         Inst.BoxCollider.size = new Vector2(1.245603f, 1.234156f);
         Inst.BoxCollider.offset = new Vector2(-0.3350806f, 0.293649f);
         Inst.GetComponent<Playercontrol>().enabled = false;
