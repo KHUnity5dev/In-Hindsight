@@ -9,6 +9,7 @@ public class InvSlot : MonoBehaviour //인벤토리 개별 슬롯 관리
     public Image itemIcon;
     public Text itemName;
     public Text itemNum;
+    public SellSlot sellSlot;
 
     public void UpdateSlotUI(int Cnt) //슬롯 UI 업데이트, Cnt는 아이템 수량
     {
@@ -35,17 +36,20 @@ public class InvSlot : MonoBehaviour //인벤토리 개별 슬롯 관리
 
         else if (InvInfo.Instance.isShopMode) //상점에서 아이템 클릭
         {
-
+            if(sellSlot.item == null || sellSlot.item != item) //판매슬롯의 아이템이 클릭한 아이템과 다른경우
+            {
+                sellSlot.item = item;
+                sellSlot.UpdateSlotUI();
+            }
+            else
+            {
+                sellSlot.UpdateSlotUI();
+            }
         }
         else //그 외 아이템 클릭 -> 지금은 클릭하면 수량이 -1되도록 했습니다.
         {
             int index = InvInfo.Instance.Invenitems.IndexOf(item);
-            InvInfo.Instance.InvenCnt[index] -= 1;
-            if (InvInfo.Instance.InvenCnt[index] == 0)
-            {
-                InvInfo.Instance.Invenitems.RemoveAt(index);
-                InvInfo.Instance.InvenCnt.RemoveAt(index);
-            }
+            InvInfo.Instance.RemoveItem(index, 1);
         }
         InvInfo.Instance.RedrawSlotUI();
     }
