@@ -11,8 +11,8 @@ public class ShopData : MonoBehaviour
     void Start()
     {
         //임시로 아이템DB의 1,2번째 아이템 추가
-        stocks.Add(ItemDatabase.instance.itemDB[0]);
-        stocks.Add(ItemDatabase.instance.itemDB[1]);
+        stocks.Add(ItemDatabase.Instance.itemDB[0]);
+        stocks.Add(ItemDatabase.Instance.itemDB[1]);
 
         soldOuts = new bool[stocks.Count];
         for(int i = 0; i < soldOuts.Length; i++)
