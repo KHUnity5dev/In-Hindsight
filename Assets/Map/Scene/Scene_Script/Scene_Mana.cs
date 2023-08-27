@@ -18,8 +18,19 @@ public class Scene_Mana : MonoBehaviour
         MenuUI.SetActive(false);
         OverUI.SetActive(false);
         ClearUI.SetActive(false);
+        InvInfo.Instance.Load();
     }
 
+    /*
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameObject.SendMessage("GameExit");
+
+        }
+    }
+    */
     public void GameOver()
     {
         OverUI.SetActive(true);
@@ -41,6 +52,9 @@ public class Scene_Mana : MonoBehaviour
     public void Load_Level(string level)
     {
         //level을 스테이지 이름으로 개선하기. 프로젝트 세팅 맞추는게 귀찮은 일이라.
+
+
+        InvInfo.Instance.Save();
         Stage_Manager.SendMessage("Next_Level", level);
     }
 
@@ -61,6 +75,7 @@ public class Scene_Mana : MonoBehaviour
     }
     public void Load_Lobby()
     {
+        InvInfo.Instance.Save();
         Stage_Manager.SendMessage("Next_Level", "LobbyMap");
     }
 
