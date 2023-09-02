@@ -64,8 +64,8 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         sellSlot = sellPanel.GetComponentInChildren<SellSlot>();
         slots = slotHolder.GetComponentsInChildren<InvSlot>();
         PlayerPrefs.SetInt("money", StartMoney);
-        Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //총알 인벤토리 첫번째 칸에 고정
-        InvenCnt.Add(10); // 총알 개수
+        Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //총알 아이템List 첫번째 칸에 고정
+        InvenCnt.Add(PlayerInventory.Bullets); // 총알 개수 PlayerInventory에서 불러와서 수량List 첫번째 칸에 고정
         RedrawSlotUI();
     }
     
@@ -148,6 +148,7 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         InvenCnt = SaveItemCnt.ToList();
 
         PlayerPrefs.SetInt("money", SaveMoney);
+        PlayerInventory.Bullets = InvenCnt[0];  //Load한 총알 PlayerInventory로 전달
         Debug.Log("LoadInventory");
         RedrawSlotUI();
     } 
@@ -156,6 +157,7 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
     {
         isShopMode = true;
         isActionInv = true;
+        InvenCnt[0] = PlayerInventory.Bullets;
         RedrawSlotUI();
         sellSlot.RemoveSlotUI();
         inventoryPanel.SetActive(isActionInv);
@@ -167,37 +169,47 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         isActionInv = false;
         inventoryPanel.SetActive(isActionInv);
         sellPanel.SetActive(isActionInv);
-    } 
+        PlayerInventory.Bullets = InvenCnt[0];
+        Save();
+    }
+
+    public void Active() //I키 입력 담당 함수
+    {
+        if (!isActionInv) //인벤토리가 꺼져있다면 켜기
+        {
+            isActionInv = !isActionInv;
+            InvenCnt[0] = PlayerInventory.Bullets;
+            RedrawSlotUI();
+            inventoryPanel.SetActive(isActionInv);
+        }
+        else //인벤토리가 켜져있다면 끄기
+        {
+            isActionInv = !isActionInv;
+            inventoryPanel.SetActive(isActionInv);
+            PlayerInventory.Bullets = InvenCnt[0];
+        }
+    }
+    public void Close() //인벤토리 닫기
+    {
+        if (isActionInv)
+        {
+            isActionInv = false;
+            isShopMode = false;
+            PlayerInventory.Bullets = InvenCnt[0];
+        }
+        inventoryPanel.SetActive(isActionInv);
+        sellPanel.SetActive(false);
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I) && !isShopMode)
         {
-            if (!isActionInv) //인벤토리가 꺼져있다면 켜기
-            {
-                isActionInv = !isActionInv;
-                RedrawSlotUI();
-                inventoryPanel.SetActive(isActionInv);
-                InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
-            }
-            else //인벤토리가 켜져있다면 끄기
-            {
-                isActionInv = !isActionInv;
-                inventoryPanel.SetActive(isActionInv);
-                PlayerPrefs.SetInt("Bullets", InvenCnt[0]);
-            }
-
+            Active();
         }// I키로 인벤토리UI 켜고끄기
         else if (Input.GetKeyDown(KeyCode.Escape)) 
         {
-            if (isActionInv)
-            {
-                isActionInv = false;
-                isShopMode = false;
-                PlayerPrefs.SetInt("Bullets", InvenCnt[0]);
-            }
-            inventoryPanel.SetActive(isActionInv);
-            sellPanel.SetActive(false);
+            Close();
         }// ESC키로 인벤토리UI 끄기
     }
 }

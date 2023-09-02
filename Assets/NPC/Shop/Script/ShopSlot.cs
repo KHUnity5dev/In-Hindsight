@@ -44,17 +44,9 @@ public class ShopSlot : MonoBehaviour //상점 개별 슬롯 관리
         buySlot.UpdateSlotUI();
     }
 
-    /* 마우스 아이템 위에 올리면 아이템 정보 나오게.. 할수있을까
+    /* 마우스 아이템 위에 올리면 아이템 정보 나오게 하기?
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (item != null)
-        {
-            if (ItemDatabase.instance.money >= item.itemCost && !soldOut)
-            {
-                ItemDatabase.instance.money -= item.itemCost;
-                Inven.instance.AddItem(item);
-            }
-        }
     }
     */
 }

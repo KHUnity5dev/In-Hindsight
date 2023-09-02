@@ -32,10 +32,10 @@ public class QuestDes : MonoBehaviour
         DesPanel.gameObject.SetActive(isActive);
     }
 
-    public void StartButtonClick()
+    public void StartButtonClick() //SceneManager에게 스테이지 정보 넘겨줌
     {
         Debug.Log("StartButtonClick, Index: " + questData.Index);
-        Scene_Manager.SendMessage("Load_Level", int.Parse(questData.Index));
+        Scene_Manager.SendMessage("Load_Level", questData.Index);
     }
 
     void Update()

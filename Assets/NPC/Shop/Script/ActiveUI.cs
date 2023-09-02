@@ -76,7 +76,7 @@ public class ActiveUI : MonoBehaviour //Player의 호출을 받아 UI활성화
         QuestUI.SetActive(isActionQuest);
     }
 
-     void ActiveShopUI()
+    void ActiveShopUI()
     {
         if (isActionShop) //끄기
         {

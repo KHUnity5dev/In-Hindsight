@@ -11,13 +11,11 @@ public class BuySlot : MonoBehaviour //상점 구매기능
     public Text itemName;
     public Text itemCost;
 
-    private InvInfo invInfo;
-
     private int buyNum = 1;
 
     public void Start()
     {
-        invInfo = GameObject.Find("InvenCanvas").GetComponent<InvInfo>();
+
     }
 
     public void UpdateSlotUI()
@@ -46,7 +44,8 @@ public class BuySlot : MonoBehaviour //상점 구매기능
                 return;
             }
             PlayerPrefs.SetInt("money", money - item.itemCost * buyNum);
-            invInfo.AddItemToInv(item, buyNum);
+            InvInfo.Instance.AddItemToInv(item, buyNum);
+            InvInfo.Instance.Save();
         }
         
     }

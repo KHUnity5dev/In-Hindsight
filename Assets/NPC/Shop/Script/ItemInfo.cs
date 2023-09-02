@@ -33,10 +33,4 @@ public class ItemInfo //아이템 클래스
         itemCnt = _itemCnt;
         //itemImage = Resources.Load("");// 아이템 이미지는 ID와 똑같이 해서 불러오기 편하게 함?
     }
-    /*
-    public bool Use()
-    {
-        return false;
-    }
-    */
 }
