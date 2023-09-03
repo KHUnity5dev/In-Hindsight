@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,8 +12,10 @@ public class Playercontrol : MonoBehaviour
     Rigidbody2D Rigid;
     SpriteRenderer Spriterenderer;
     Animator Anim;
-    Vector2 Playerdir = Vector2.right; 
-
+    Vector2 Playerdir = Vector2.right;
+    bool QuestUIOn = false;
+    bool InvenUIOn = false;
+    bool PauseUIOn = false;
     public GameObject ActiveUI;
     void Awake() // �����Ҷ� �ѹ��� ����Ǵ� �Լ�
     {
@@ -40,18 +43,11 @@ public class Playercontrol : MonoBehaviour
             Player.Player_Speed = Player.Player_Speed - 2f;
             Player.Player_State = Player.State.Walk;
         }
-
-        if (Input.GetKeyDown(KeyCode.P)) // �޸��� ����
-        {
-            Player.Dead();
-        }
-
+        Pause();
+        ReloadCaller();
         Gunshot();
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Invoke("Reload",1);
-        }
+        QuestCaller();
+        InvenCaller();
 
         Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, 5*Playerdir, new Color(1, 0, 0));
 
@@ -145,7 +141,6 @@ public class Playercontrol : MonoBehaviour
     {
         if (PlayerInventory.Bullets > 0 && PlayerInventory.Magazine < PlayerInventory.Maxmagazine)
         {
-            PlayerInventory.Bullets -= (PlayerInventory.Maxmagazine - PlayerInventory.Magazine);
             PlayerInventory.Magazine = PlayerInventory.Maxmagazine;
             Debug.Log(PlayerInventory.Bullets);
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Reload);
@@ -178,10 +173,13 @@ public class Playercontrol : MonoBehaviour
     }
     void Gunshot()
     {
+        if (InvenUIOn || QuestUIOn || PauseUIOn)
+            return;
         Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)) - (Vector3)(Rigid.position + Vector2.up);
         if (Input.GetMouseButtonDown(0) && PlayerInventory.Magazine > 0) // �ѽ��
         {
             PlayerInventory.Magazine--;
+            PlayerInventory.Bullets--;
             Debug.Log(PlayerInventory.Magazine);
             Anim.SetTrigger("Attack");
             Playerdir = point.normalized;
@@ -206,5 +204,52 @@ public class Playercontrol : MonoBehaviour
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
         }
         Debug.DrawRay(Rigid.position, point, new Color(1, 0, 1)); // ���콺 ������ ����
+    }
+    void ReloadCaller()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Invoke("Reload", 1);
+        }
+    }
+    void Pause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // �޸��� ����
+        {
+            Player.Dead();
+        }
+    }
+    void QuestCaller()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (!QuestUIOn)
+            {
+                //Quest UI Active
+                QuestUIOn = true;
+                Debug.Log("ON!!!1");
+            }
+            else
+            {
+                //Quest Ui unActive
+                QuestUIOn = false;
+            }    
+        }
+    }
+    void InvenCaller()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!InvenUIOn)
+            {
+                //Quest UI Active
+                InvenUIOn = true;
+            }
+            else
+            {
+                //Quest Ui unActive
+                InvenUIOn = false;
+            }
+        }
     }
 }

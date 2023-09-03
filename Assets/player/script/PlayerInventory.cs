@@ -57,7 +57,13 @@ public class PlayerInventory : MonoBehaviour
         }
         Instance = this;
         
-        //Bullets = PlayerPrefs.GetInt("Bullets") - Maxmagazine;
+        //Bullets = PlayerPrefs.GetInt("Bullets");
+        if (Bullets < Maxmagazine)
+        {
+            Magazine = Bullets;
+        }
+        else
+            Magazine = Maxmagazine;
     }
     #endregion
 
