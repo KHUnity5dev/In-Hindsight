@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
+public class InvInfo : MonoBehaviour //ì¸ë²¤í† ë¦¬ ë°ì´í„° ë° ìŠ¬ë¡¯ ê´€ë¦¬
 {
     public GameObject inventoryPanel;
     public GameObject sellPanel;
@@ -13,36 +13,36 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
     private bool isActionInv = false;
     public bool isShopMode = false;
 
-    private InvSlot[] slots; //ÀÎº¥Åä¸® ½½·Ôµé
-    public Transform slotHolder; //ÀÎº¥Åä¸® ½½·ÔÀÇ ºÎ¸ğ°´Ã¼
+    private InvSlot[] slots; //ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ë“¤
+    public Transform slotHolder; //ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì˜ ë¶€ëª¨ê°ì²´
 
-    public List<ItemInfo> Invenitems = new List<ItemInfo>(); //ÀÎº¥Åä¸®¾ÆÀÌÅÛ ¸®½ºÆ®
-    public List<int> InvenCnt = new List<int>(); //ÀÎº¥Åä¸® ¾ÆÀÌÅÛ ¼ö·® ¸®½ºÆ®
+    public List<ItemInfo> Invenitems = new List<ItemInfo>(); //ì¸ë²¤í† ë¦¬ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
+    public List<int> InvenCnt = new List<int>(); //ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ìˆ˜ëŸ‰ ë¦¬ìŠ¤íŠ¸
     private List<ItemInfo> SaveItemList;
     private List<int> SaveItemCnt;
     private int SaveMoney;
     public Text moneyText;
-    public int StartMoney; //ÇÃ·¹ÀÌ¾î ½ÃÀÛ µ·
+    public int StartMoney; //í”Œë ˆì´ì–´ ì‹œì‘ ëˆ
 
-    //**½Ì±ÛÅæ
+    //**ì‹±ê¸€í†¤
     private static InvInfo instance = null; 
     private void Awake()
     {
         if (null == instance)
         {
-            //ÀÌ Å¬·¡½º ÀÎ½ºÅÏ½º°¡ Åº»ıÇßÀ» ¶§ Àü¿ªº¯¼ö instance¿¡ °ÔÀÓ¸Å´ÏÀú ÀÎ½ºÅÏ½º°¡ ´ã°ÜÀÖÁö ¾Ê´Ù¸é, ÀÚ½ÅÀ» ³Ö¾îÁØ´Ù.
+            //ì´ í´ë˜ìŠ¤ ì¸ìŠ¤í„´ìŠ¤ê°€ íƒ„ìƒí–ˆì„ ë•Œ ì „ì—­ë³€ìˆ˜ instanceì— ê²Œì„ë§¤ë‹ˆì € ì¸ìŠ¤í„´ìŠ¤ê°€ ë‹´ê²¨ìˆì§€ ì•Šë‹¤ë©´, ìì‹ ì„ ë„£ì–´ì¤€ë‹¤.
             instance = this;
 
-            //¾À ÀüÈ¯ÀÌ µÇ´õ¶óµµ ÆÄ±«µÇÁö ¾Ê°Ô ÇÑ´Ù.
-            //gameObject¸¸À¸·Îµµ ÀÌ ½ºÅ©¸³Æ®°¡ ÄÄÆ÷³ÍÆ®·Î¼­ ºÙ¾îÀÖ´Â Hierarchy»óÀÇ °ÔÀÓ¿ÀºêÁ§Æ®¶ó´Â ¶æÀÌÁö¸¸, 
-            //³ª´Â Çò°¥¸² ¹æÁö¸¦ À§ÇØ this¸¦ ºÙ¿©ÁÖ±âµµ ÇÑ´Ù.
+            //ì”¬ ì „í™˜ì´ ë˜ë”ë¼ë„ íŒŒê´´ë˜ì§€ ì•Šê²Œ í•œë‹¤.
+            //gameObjectë§Œìœ¼ë¡œë„ ì´ ìŠ¤í¬ë¦½íŠ¸ê°€ ì»´í¬ë„ŒíŠ¸ë¡œì„œ ë¶™ì–´ìˆëŠ” Hierarchyìƒì˜ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¼ëŠ” ëœ»ì´ì§€ë§Œ, 
+            //ë‚˜ëŠ” í—·ê°ˆë¦¼ ë°©ì§€ë¥¼ ìœ„í•´ thisë¥¼ ë¶™ì—¬ì£¼ê¸°ë„ í•œë‹¤.
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            //¸¸¾à ¾À ÀÌµ¿ÀÌ µÇ¾ú´Âµ¥ ±× ¾À¿¡µµ Hierarchy¿¡ InvenCanvas°¡ Á¸ÀçÇÒ ¼öµµ ÀÖ´Ù.
-            //±×·² °æ¿ì¿£ ÀÌÀü ¾À¿¡¼­ »ç¿ëÇÏ´ø ÀÎ½ºÅÏ½º¸¦ °è¼Ó »ç¿ëÇØÁÖ´Â °æ¿ì°¡ ¸¹Àº °Í °°´Ù.
-            //±×·¡¼­ ÀÌ¹Ì Àü¿ªº¯¼öÀÎ instance¿¡ ÀÎ½ºÅÏ½º°¡ Á¸ÀçÇÑ´Ù¸é ÀÚ½Å(»õ·Î¿î ¾ÀÀÇ InvenCanvas)À» »èÁ¦ÇØÁØ´Ù.
+            //ë§Œì•½ ì”¬ ì´ë™ì´ ë˜ì—ˆëŠ”ë° ê·¸ ì”¬ì—ë„ Hierarchyì— InvenCanvasê°€ ì¡´ì¬í•  ìˆ˜ë„ ìˆë‹¤.
+            //ê·¸ëŸ´ ê²½ìš°ì—” ì´ì „ ì”¬ì—ì„œ ì‚¬ìš©í•˜ë˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê³„ì† ì‚¬ìš©í•´ì£¼ëŠ” ê²½ìš°ê°€ ë§ì€ ê²ƒ ê°™ë‹¤.
+            //ê·¸ë˜ì„œ ì´ë¯¸ ì „ì—­ë³€ìˆ˜ì¸ instanceì— ì¸ìŠ¤í„´ìŠ¤ê°€ ì¡´ì¬í•œë‹¤ë©´ ìì‹ (ìƒˆë¡œìš´ ì”¬ì˜ InvenCanvas)ì„ ì‚­ì œí•´ì¤€ë‹¤.
             Destroy(this.gameObject);
         }
     }
@@ -63,13 +63,18 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
         inventoryPanel.SetActive(isActionInv);
         sellSlot = sellPanel.GetComponentInChildren<SellSlot>();
         slots = slotHolder.GetComponentsInChildren<InvSlot>();
-        PlayerPrefs.SetInt("money", StartMoney);
-        Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //ÃÑ¾Ë ÀÎº¥Åä¸® Ã¹¹øÂ° Ä­¿¡ °íÁ¤
-        InvenCnt.Add(10); // ÃÑ¾Ë °³¼ö
+        if(AllMapUI.ClearMaps.Count < 1){
+            Debug.Log(AllMapUI.ClearMaps);
+            PlayerPrefs.SetInt("money", StartMoney);
+            PlayerPrefs.SetInt("Bullets", 10);
+        }
+        Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //ì´ì•Œ ì¸ë²¤í† ë¦¬ ì²«ë²ˆì§¸ ì¹¸ì— ê³ ì •
+        InvenCnt.Add(0); // ì´ì•Œ ê°œìˆ˜
+        InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
         RedrawSlotUI();
     }
     
-    public void RedrawSlotUI() //ÀÎº¥Åä¸® UI±×¸®±â
+    public void RedrawSlotUI() //ì¸ë²¤í† ë¦¬ UIê·¸ë¦¬ê¸°
     {
         for(int i = 0; i < slots.Length; i++)
         {
@@ -78,19 +83,25 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
         for(int i = 0; i < Invenitems.Count; i++)
         {
             slots[i].item = Invenitems[i];
-            slots[i].UpdateSlotUI(InvenCnt[i]);
+            // slots[i].UpdateSlotUI(InvenCnt[i]);
+            slots[i].UpdateSlotUI(PlayerInventory.Bullets);
         }
         moneyText.text = PlayerPrefs.GetInt("money").ToString();
     }
 
-    public void AddItemToInv(ItemInfo item, int n) //¾ÆÀÌÅÛÁ¤º¸, °³¼ö¸¦ ¹Ş¾Æ¼­ ÀÎº¥Åä¸®¿¡ Ãß°¡.
+    public void AddItemToInv(ItemInfo item, int n) //ì•„ì´í…œì •ë³´, ê°œìˆ˜ë¥¼ ë°›ì•„ì„œ ì¸ë²¤í† ë¦¬ì— ì¶”ê°€.
     {
         bool isAdd = true;
-        for(int i = 0; i < Invenitems.Count; i++) //ÀÎº¥Åä¸®¿¡ µ¿ÀÏÇÑ ¾ÆÀÌÅÛÀÖ´ÂÁö Ã£±â
+        for(int i = 0; i < Invenitems.Count; i++) //ì¸ë²¤í† ë¦¬ì— ë™ì¼í•œ ì•„ì´í…œìˆëŠ”ì§€ ì°¾ê¸°
         {
             if (Invenitems[i].itemName == item.itemName)
             {
-                InvenCnt[i] += n; //µ¿ÀÏÇÑ ¾ÆÀÌÅÛ ÀÖÀ¸¸é °³¼ö ´Ã¸®±â
+                // InvenCnt[i] += n; //ë™ì¼í•œ ì•„ì´í…œ ìˆìœ¼ë©´ ê°œìˆ˜ ëŠ˜ë¦¬ê¸°
+                if (i == 0){
+                    PlayerPrefs.SetInt("Bullets", PlayerPrefs.GetInt("Bullets")+n);
+                    PlayerInventory.Bullets = PlayerPrefs.GetInt("Bullets");
+                    InvenCnt[i] = PlayerPrefs.GetInt("Bullets");
+                }
                 isAdd = false;
                 break;
             }
@@ -98,33 +109,39 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
         if (isAdd)
         {
             InvenCnt.Add(1);
-            Invenitems.Add(item); //ÀÎº¥Åä¸® ¾ÆÀÌÅÛ ¸®½ºÆ®¿¡ ¾ÆÀÌÅÛ Ãß°¡
+            Invenitems.Add(item); //ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ì— ì•„ì´í…œ ì¶”ê°€
         }
-        RedrawSlotUI(); //UI ¾÷µ¥ÀÌÆ®
+        RedrawSlotUI(); //UI ì—…ë°ì´íŠ¸
     }
 
-    public void RemoveItem(int index, int n) //¾ÆÀÌÅÛ À§Ä¡(index), Á¦°ÅÇÏ°íÀÚÇÏ´Â °³¼ö(n)À» ¹Ş¾Æ ÀÎº¥Åä¸®¿¡¼­ Á¦°Å.
+    public void RemoveItem(int index, int n) //ì•„ì´í…œ ìœ„ì¹˜(index), ì œê±°í•˜ê³ ìí•˜ëŠ” ê°œìˆ˜(n)ì„ ë°›ì•„ ì¸ë²¤í† ë¦¬ì—ì„œ ì œê±°.
     {
-        if (index == 0) //ÃÑ¾Ë(index=0)ÀÇ °æ¿ì °³¼ö°¡ 0ÀÌ¾îµµ »ç¶óÁöÁö ¾Ê°Ô ¿¹¿ÜÃ³¸®.
+        if (index == 0) //ì´ì•Œ(index=0)ì˜ ê²½ìš° ê°œìˆ˜ê°€ 0ì´ì–´ë„ ì‚¬ë¼ì§€ì§€ ì•Šê²Œ ì˜ˆì™¸ì²˜ë¦¬.
         {
-            if (InvenCnt[index] - n < 0) //ÃÑ¾ËÀÌ ºÎÁ·ÇÑ °æ¿ì
+            if (InvenCnt[0] - n < 0) //ì´ì•Œì´ ë¶€ì¡±í•œ ê²½ìš°
             {
-                Debug.Log("ÃÑ¾Ë ºÎÁ·");
+                Debug.Log("ì´ì•Œ ë¶€ì¡±");
                 RedrawSlotUI();
                 return;
             }
-            InvenCnt[index] -= n;
+            PlayerPrefs.SetInt("Bullets", PlayerPrefs.GetInt("Bullets")-n);
+            InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
+            PlayerInventory.Bullets = PlayerPrefs.GetInt("Bullets");
+            // InvenCnt[index] -= n;
             RedrawSlotUI();
-            return;
+            if (InvenCnt[0] <= 0)
+                RedrawSlotUI();
+                return;
         } 
         if(InvenCnt[index] - n < 0)
         {
-            Debug.Log("¾ÆÀÌÅÛÀÌ ºÎÁ·ÇÕ´Ï´Ù");
+            Debug.Log("ì•„ì´í…œì´ ë¶€ì¡±í•©ë‹ˆë‹¤");
             RedrawSlotUI();
             return;
         }
-        InvenCnt[index] -= n;
-
+        // PlayerPrefs.SetInt("Bullets", PlayerPrefs.GetInt("Bullets")-n);
+        // InvenCnt[index] -= n;
+        // InvenCnt[index] = PlayerPrefs.GetInt("Bullets");
         if (InvenCnt[index] <= 0)
         {
             Invenitems.RemoveAt(index);
@@ -134,25 +151,27 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
         RedrawSlotUI();
     }
 
-    public void Save() //ÇöÀç ÀÎº¥Åä¸® Á¤º¸ ÀúÀå
+    public void Save() //í˜„ì¬ ì¸ë²¤í† ë¦¬ ì •ë³´ ì €ì¥
     {
-        SaveItemList = Invenitems.ToList();
-        SaveItemCnt = InvenCnt.ToList();
+        // SaveItemList = Invenitems.ToList();
+        // SaveItemCnt = InvenCnt.ToList();
         SaveMoney = PlayerPrefs.GetInt("money");
+        // PlayerPrefs.SetInt("Bullets",InvenCnt[0]);
         Debug.Log("SaveInventory");
-    } 
+    }
 
-    public void Load() //°¡Àå ÃÖ±Ù Save() Çß´ø ÀÎº¥Åä¸® ºÒ·¯¿À±â
+    public void Load() //ê°€ì¥ ìµœê·¼ Save() í–ˆë˜ ì¸ë²¤í† ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸°
     {
-        Invenitems = SaveItemList.ToList();
-        InvenCnt = SaveItemCnt.ToList();
+        // Invenitems = SaveItemList.ToList();
+        // InvenCnt = SaveItemCnt.ToList();
 
-        PlayerPrefs.SetInt("money", SaveMoney);
+        // PlayerPrefs.GetInt("Bullets",InvenCnt[0]);
+        // PlayerPrefs.SetInt("money", SaveMoney);
         Debug.Log("LoadInventory");
         RedrawSlotUI();
-    } 
+    }
 
-    public void ActiveShopModeUI() //»óÁ¡¸ğµå ÀÎº¥Åä¸® ÄÑ±â
+    public void ActiveShopModeUI() //ìƒì ëª¨ë“œ ì¸ë²¤í† ë¦¬ ì¼œê¸°
     {
         isShopMode = true;
         isActionInv = true;
@@ -161,7 +180,7 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
         inventoryPanel.SetActive(isActionInv);
         sellPanel.SetActive(isActionInv);
     } 
-    public void CloseShopModeUI() //»óÁ¡¸ğµå ÀÎº¥Åä¸® ²ô±â
+    public void CloseShopModeUI() //ìƒì ëª¨ë“œ ì¸ë²¤í† ë¦¬ ë„ê¸°
     {
         isShopMode = false;
         isActionInv = false;
@@ -173,31 +192,30 @@ public class InvInfo : MonoBehaviour //ÀÎº¥Åä¸® µ¥ÀÌÅÍ ¹× ½½·Ô °ü¸®
     {
         if (Input.GetKeyDown(KeyCode.I) && !isShopMode)
         {
-            if (!isActionInv) //ÀÎº¥Åä¸®°¡ ²¨Á®ÀÖ´Ù¸é ÄÑ±â
+            if (!isActionInv) //ì¸ë²¤í† ë¦¬ê°€ êº¼ì ¸ìˆë‹¤ë©´ ì¼œê¸°
             {
                 isActionInv = !isActionInv;
+                // InvenCnt[0] = PlayerInventory.Bullets + PlayerInventory.Magazine;
                 RedrawSlotUI();
                 inventoryPanel.SetActive(isActionInv);
-                InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
             }
-            else //ÀÎº¥Åä¸®°¡ ÄÑÁ®ÀÖ´Ù¸é ²ô±â
+            else //ì¸ë²¤í† ë¦¬ê°€ ì¼œì ¸ìˆë‹¤ë©´ ë„ê¸°
             {
                 isActionInv = !isActionInv;
                 inventoryPanel.SetActive(isActionInv);
-                PlayerPrefs.SetInt("Bullets", InvenCnt[0]);
             }
 
-        }// IÅ°·Î ÀÎº¥Åä¸®UI ÄÑ°í²ô±â
+        }// Ií‚¤ë¡œ ì¸ë²¤í† ë¦¬UI ì¼œê³ ë„ê¸°
         else if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             if (isActionInv)
             {
                 isActionInv = false;
                 isShopMode = false;
-                PlayerPrefs.SetInt("Bullets", InvenCnt[0]);
+                // PlayerPrefs.SetInt("Bullets", InvenCnt[0]);
             }
             inventoryPanel.SetActive(isActionInv);
             sellPanel.SetActive(false);
-        }// ESCÅ°·Î ÀÎº¥Åä¸®UI ²ô±â
+        }// ESCí‚¤ë¡œ ì¸ë²¤í† ë¦¬UI ë„ê¸°
     }
 }

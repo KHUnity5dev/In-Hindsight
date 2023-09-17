@@ -42,7 +42,9 @@ public class EnemyMove : MonoBehaviour
     //Noise 방향으로 이동하는 Chase
     public void Chase(GameObject Noise)
     {
-        Debug.Log("Chase");
+        if(Noise.tag != "Player" && Noise.tag != "Noise" ){
+            return;
+        }
         IsChase = true;
         if (patrolCoroutine != null)
         {
@@ -52,12 +54,13 @@ public class EnemyMove : MonoBehaviour
         Vector2 positionDiff = new Vector2(noiseDirection.x - transform.position.x 
                                         , noiseDirection.y - transform.position.y);
         direction = positionDiff.normalized.x > 0 ? Vector2.right : Vector2.left;
-        Debug.Log(positionDiff);
-        Debug.Log(direction);
+        // Debug.Log(positionDiff);
+        // Debug.Log(direction);
         rigid.velocity = direction*speed;
         Target = noiseDirection;
     }
     private void FixedUpdate() {
+
         //Chase상태가 됐을 때 끝까지 Chase 한 후 다시 Patrol
         if(IsChase){
             if(Target.x - transform.position.x < 0.5f && Target.x - transform.position.x > -0.5f){
@@ -68,8 +71,10 @@ public class EnemyMove : MonoBehaviour
                 IsChase = false;
             }
             LayerMask mask = LayerMask.GetMask("Object");
+
             Debug.DrawRay(rigid.position + -Vector2.up*0.2f, 2 * Vector3.right * (sprite.flipX == false ? 1 : -1), new Color(1, 0, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(rigid.position -Vector2.up*0.2f, 5 * Vector3.right * (sprite.flipX == false ? 1 : -1), 2, mask);
+
             if (rayHit.collider != null){
                 Debug.Log(rayHit.collider.gameObject);
                 rayHit.collider.gameObject.SendMessage("IsOpen_Enemy_Interacted", gameObject);
@@ -94,6 +99,7 @@ public class EnemyMove : MonoBehaviour
             Debug.Log(rigid.velocity);
             if(IsBoss){
                 IsMove = false;
+                rigid.velocity = Vector2.zero; 
                 yield return new WaitForSeconds(2f);
             }
             rigid.velocity = new Vector2(PatrolArray[Enemynum,i], rigid.velocity.y); //velocity는 원래 speed가 있고, 방향만 패턴Array에서 가져와서 곱함

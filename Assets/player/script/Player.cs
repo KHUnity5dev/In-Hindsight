@@ -138,9 +138,9 @@ public class Player : MonoBehaviour
     {
         Player_State = State.Dead;
         Inst.Anim.SetTrigger("isDead");
-        Inst.m_scenemanager.SendMessage("GameExit");
-        Inst.BoxCollider.size = new Vector2(1.245603f, 1.234156f);
-        Inst.BoxCollider.offset = new Vector2(-0.3350806f, 0.293649f);
+        Inst.m_scenemanager.SendMessage("GameOver");
+        //Inst.BoxCollider.size = new Vector2(1.245603f, 1.234156f);
+        //Inst.BoxCollider.offset = new Vector2(-0.3350806f, 0.293649f);
         Inst.GetComponent<Playercontrol>().enabled = false;
         Inst.GetComponent<PlayerInput>().enabled = false;
         AudioManager.instance.PlayBgm(false);

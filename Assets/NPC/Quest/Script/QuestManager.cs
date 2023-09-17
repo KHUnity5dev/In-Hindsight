@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public List<QuestData> questList, curList;
+    public static List<QuestData> questList= new List<QuestData> (), curList;
     public QuestSlot[] questSlots;
     public Transform questHolder;
 
@@ -15,37 +15,39 @@ public class QuestManager : MonoBehaviour
         defaultQuest = new QuestData("00", "",
             "",
             "0", false);
-        questList = new List<QuestData> (); 
-        GenerateData();// ÀüÃ¼ ÀÇ·Ú ¸ñ·Ï »ı¼º
+        GenerateData();// ì „ì²´ ì˜ë¢° ëª©ë¡ ìƒì„±
     }
 
-    public void UpdateList() // È°¼ºÈ­ µÈ ÀÇ·Ú ¾÷µ¥ÀÌÆ®
+    public void UpdateList() // í™œì„±í™” ëœ ì˜ë¢° ì—…ë°ì´íŠ¸
     {
         curList = questList.FindAll(x => x.isActive == true);
         questSlots = questHolder.GetComponentsInChildren<QuestSlot>();
         for(int i=0;i<questSlots.Length; i++)
         {
             questSlots[i].questData = i<curList.Count?curList[i]:defaultQuest;
-            questSlots[i].UpdateUI(); // ½½·Ô ¾÷µ¥ÀÌÆ®
+            questSlots[i].UpdateUI(); // ìŠ¬ë¡¯ ì—…ë°ì´íŠ¸
         }
     }
 
-    void GenerateData() // ÀüÃ¼ ÀÇ·Ú ¸ñ·Ï »ı¼º
+    void GenerateData() // ì „ì²´ ì˜ë¢° ëª©ë¡ ìƒì„±
     {
+        if(questList.Count > 0){
+            return;
+        }
         /*
         questList.Add(new QuestData("Index","Title", 
             "Description",
             "star", (bool)isActive));
         */
 
-        questList.Add(new QuestData("1","Ã¹ ¹øÂ° ÀÇ·Ú", 
-            "Ã¹ ¹øÂ° ÀÇ·Ú¼³¸íÀÔ´Ï´Ù.",
+        questList.Add(new QuestData("1","ì²« ë²ˆì§¸ ì˜ë¢°", 
+            "ì²« ë²ˆì§¸ ì˜ë¢°ì„¤ëª…ì…ë‹ˆë‹¤.",
             "2", true));
-        questList.Add(new QuestData("2", "µÎ ¹øÂ° ÀÇ·Ú",
-            "µÎ ¹øÂ° ÀÇ·Ú¼³¸íÀÔ´Ï´Ù.",
+        questList.Add(new QuestData("2", "ë‘ ë²ˆì§¸ ì˜ë¢°",
+            "ë‘ ë²ˆì§¸ ì˜ë¢°ì„¤ëª…ì…ë‹ˆë‹¤.",
             "0", true));
-        questList.Add(new QuestData("3", "¼¼ ¹øÂ° ÀÇ·Ú",
-            "¼¼ ¹øÂ° ÀÇ·Ú¼³¸íÀÔ´Ï´Ù.",
+        questList.Add(new QuestData("3", "ì„¸ ë²ˆì§¸ ì˜ë¢°",
+            "ì„¸ ë²ˆì§¸ ì˜ë¢°ì„¤ëª…ì…ë‹ˆë‹¤.",
             "0", false));
 
     }

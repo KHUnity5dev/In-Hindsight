@@ -25,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
     }
     public GameObject Check()
     {
-        LayerMask mask = LayerMask.GetMask("Player") | LayerMask.GetMask("Object"); //Player와 Object만 검출
+        LayerMask mask = LayerMask.GetMask("Player") | LayerMask.GetMask("Object") | LayerMask.GetMask("Smoke"); //Player와 Object와 Smoke만 검출
         RaycastHit2D[] rayHit;
         Vector3[] Dir;
         if(Enemynum == 3){

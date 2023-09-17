@@ -45,11 +45,10 @@ public class PlayerInventory : MonoBehaviour
     #region Singleton
     public static PlayerInventory Instance;
     public static Gun MyGun = new Gun();
-    public static int Bullets = 100;
+    public static int Bullets = 0;
     public static int Maxmagazine = 10;
-    public static int Magazine = 10;
-    void Awake()
-    {
+    public static int Magazine = 0;
+    void OnEnable() {
         if(Instance != null)
         {
             Destroy(gameObject);
@@ -57,15 +56,20 @@ public class PlayerInventory : MonoBehaviour
         }
         Instance = this;
         
-        //Bullets = PlayerPrefs.GetInt("Bullets") - Maxmagazine;
+        Debug.Log("Player : StageStart");
+        Bullets = PlayerPrefs.GetInt("Bullets");
+
+        if (Bullets < Maxmagazine)
+        {
+            Magazine = Bullets;
+        }
+        else
+            Magazine = Maxmagazine;
     }
+    void FixedUpdate()
+    {
+    }
+
     #endregion
 
-
-
-
-    void Update()
-    {
-        
-    }
 }

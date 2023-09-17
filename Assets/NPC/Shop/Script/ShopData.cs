@@ -10,10 +10,10 @@ public class ShopData : MonoBehaviour
 
     void Start()
     {
-        //ÀÓ½Ã·Î ¾ÆÀÌÅÛDBÀÇ 1,2¹øÂ° ¾ÆÀÌÅÛ Ãß°¡
+        //ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½DBï¿½ï¿½ 1,2ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         stocks.Add(ItemDatabase.Instance.itemDB[0]);
         stocks.Add(ItemDatabase.Instance.itemDB[1]);
-
+    
         soldOuts = new bool[stocks.Count];
         for(int i = 0; i < soldOuts.Length; i++)
         {

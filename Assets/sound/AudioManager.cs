@@ -14,13 +14,13 @@ public class AudioManager : MonoBehaviour
     [Header("#SFX")]
     public AudioClip[] sfxClips;
     public float sfxVolume;
-    public int channels; //´Ù¾çÇÑ È¿°úÀ½À» ³»¾ßÇÏ¹Ç·Î ÇÊ¿ä, ¿Àµð¿À ¼Ò½ºÀÇ °³¼ö
+    public int channels; //ï¿½Ù¾ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ ï¿½Ê¿ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     AudioSource[] sfxPlayers;
-    int channelIndex; // ÇöÀç ³ª¿À°í ÀÖ´Â È¿°úÀ½ÀÇ ÀÎµ¦½º
+    int channelIndex; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
 
-    public enum Sfx // È¿°úÀ½ ¿­°Å
+    public enum Sfx // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        Reload, Gunshot, Footstep,
+        Reload, Gunshot, Footstep, door, Gas, Stair, Light, Enemydead
     }
 
     private void Awake()
@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
     }
     void Init()
     {
-        //¹è°æÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = transform;
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.loop = true;
         bgmPlayer.volume = bgmVolume;
         bgmPlayer.clip = bgmClip;
-        //È¿°úÀ½ ÇÃ·¹ÀÌ¾î ÃÊ±âÈ­
+        //È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ê±ï¿½È­
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];

@@ -12,7 +12,6 @@ public class Scene_Mana : MonoBehaviour
     [SerializeField]
     private GameObject ClearUI;
 
-
     private void Start()
     {
         MenuUI.SetActive(false);
@@ -51,7 +50,7 @@ public class Scene_Mana : MonoBehaviour
 
     public void Load_Level(string level)
     {
-        //levelÀ» ½ºÅ×ÀÌÁö ÀÌ¸§À¸·Î °³¼±ÇÏ±â. ÇÁ·ÎÁ§Æ® ¼¼ÆÃ ¸ÂÃß´Â°Ô ±ÍÂúÀº ÀÏÀÌ¶ó.
+        //levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½.
 
 
         InvInfo.Instance.Save();

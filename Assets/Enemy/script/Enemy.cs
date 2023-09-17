@@ -33,10 +33,10 @@ public class Enemy : MonoBehaviour
         
         if (enemyAttack.OnTarget){
             transform.GetChild(0).gameObject.SetActive(true);// 대상 발견시 느낌표 뜸
-            if (IsBoss)
-            {
+            // if (IsBoss)
+            // {
 
-            }
+            // }
             CurAttackCoolTime -= 0.02f;
             if(CurAttackCoolTime <= 0.01f){
                 CurAttackCoolTime = AttackCoolTime;

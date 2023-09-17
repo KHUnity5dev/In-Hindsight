@@ -19,8 +19,8 @@ public class QuestDes : MonoBehaviour
     public void UpdatePanel(QuestData _questData)
     {
         questData = _questData;
-        DesPanel.GetComponentsInChildren<Text>()[0].text = questData.Title; //Á¦¸ñ
-        DesPanel.GetComponentsInChildren<Text>()[2].text = questData.Description; //¼³¸í
+        DesPanel.GetComponentsInChildren<Text>()[0].text = questData.Title; //ì œëª©
+        DesPanel.GetComponentsInChildren<Text>()[2].text = questData.Description; //ì„¤ëª…
         isActive = true;
         DesPanel.gameObject.SetActive(isActive);
 
@@ -32,10 +32,10 @@ public class QuestDes : MonoBehaviour
         DesPanel.gameObject.SetActive(isActive);
     }
 
-    public void StartButtonClick()
+    public void StartButtonClick() //SceneManagerì—ê²Œ ìŠ¤í…Œì´ì§€ ì •ë³´ ë„˜ê²¨ì¤Œ
     {
         Debug.Log("StartButtonClick, Index: " + questData.Index);
-        Scene_Manager.SendMessage("Load_Level", int.Parse(questData.Index));
+        Scene_Manager.SendMessage("Load_Level", questData.Index);
     }
 
     void Update()

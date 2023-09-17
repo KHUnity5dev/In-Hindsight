@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor.UIElements;
 
-public class ShopSlot : MonoBehaviour //»óÁ¡ °³º° ½½·Ô °ü¸®
+public class ShopSlot : MonoBehaviour //ìƒì  ê°œë³„ ìŠ¬ë¡¯ ê´€ë¦¬
 {
     public int slotnum;
     public ItemInfo item;
@@ -44,17 +44,9 @@ public class ShopSlot : MonoBehaviour //»óÁ¡ °³º° ½½·Ô °ü¸®
         buySlot.UpdateSlotUI();
     }
 
-    /* ¸¶¿ì½º ¾ÆÀÌÅÛ À§¿¡ ¿Ã¸®¸é ¾ÆÀÌÅÛ Á¤º¸ ³ª¿À°Ô.. ÇÒ¼öÀÖÀ»±î
+    /* ë§ˆìš°ìŠ¤ ì•„ì´í…œ ìœ„ì— ì˜¬ë¦¬ë©´ ì•„ì´í…œ ì •ë³´ ë‚˜ì˜¤ê²Œ í•˜ê¸°?
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (item != null)
-        {
-            if (ItemDatabase.instance.money >= item.itemCost && !soldOut)
-            {
-                ItemDatabase.instance.money -= item.itemCost;
-                Inven.instance.AddItem(item);
-            }
-        }
     }
     */
 }

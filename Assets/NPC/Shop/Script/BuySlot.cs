@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuySlot : MonoBehaviour //»óÁ¡ ±¸¸Å±â´É
+public class BuySlot : MonoBehaviour //ìƒì  êµ¬ë§¤ê¸°ëŠ¥
 {
-    //±¸¸Å¼ö·® Á¤ÇÏ´Â°Å ¸¸µé±â
+    //êµ¬ë§¤ìˆ˜ëŸ‰ ì •í•˜ëŠ”ê±° ë§Œë“¤ê¸°
     public ItemInfo item;
     public Image itemIcon;
     public Text itemName;
     public Text itemCost;
 
-    private InvInfo invInfo;
-
     private int buyNum = 1;
 
     public void Start()
     {
-        invInfo = GameObject.Find("InvenCanvas").GetComponent<InvInfo>();
+
     }
 
     public void UpdateSlotUI()
@@ -42,11 +40,12 @@ public class BuySlot : MonoBehaviour //»óÁ¡ ±¸¸Å±â´É
             int money = PlayerPrefs.GetInt("money");
             if(money - item.itemCost*buyNum < 0)
             {
-                Debug.Log("±¸¸Å°¡´É¼ö·®À» ÃÊ°úÇß½À´Ï´Ù.");
+                Debug.Log("êµ¬ë§¤ê°€ëŠ¥ìˆ˜ëŸ‰ì„ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.");
                 return;
             }
             PlayerPrefs.SetInt("money", money - item.itemCost * buyNum);
-            invInfo.AddItemToInv(item, buyNum);
+            InvInfo.Instance.AddItemToInv(item, buyNum);
+            InvInfo.Instance.Save();
         }
         
     }

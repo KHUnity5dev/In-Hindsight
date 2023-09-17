@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stage_Manager: {fileID: 0}
+  MenuUI: {fileID: 0}
+  OverUI: {fileID: 0}
+  ClearUI: {fileID: 0}

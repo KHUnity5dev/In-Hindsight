@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//¾ÆÀÌÅÛ µ¥ÀÌÅÍ Å¬·¡½º
+//ì•„ì´í…œ ë°ì´í„° í´ë˜ìŠ¤
 
-public enum ItemType1 //¾ÆÀÌÅÛ Å¸ÀÔ
+public enum ItemType1 //ì•„ì´í…œ íƒ€ì…
 {
     Equipment,
     Consumables,
@@ -12,7 +12,7 @@ public enum ItemType1 //¾ÆÀÌÅÛ Å¸ÀÔ
 }
 
 [System.Serializable]
-public class ItemInfo //¾ÆÀÌÅÛ Å¬·¡½º
+public class ItemInfo //ì•„ì´í…œ í´ë˜ìŠ¤
 {
     public ItemType1 itemtype;
     public int itemID;
@@ -31,12 +31,6 @@ public class ItemInfo //¾ÆÀÌÅÛ Å¬·¡½º
         itemCost = _itemCost;
         itemDescription = _itemDes;
         itemCnt = _itemCnt;
-        //itemImage = Resources.Load("");// ¾ÆÀÌÅÛ ÀÌ¹ÌÁö´Â ID¿Í ¶È°°ÀÌ ÇØ¼­ ºÒ·¯¿À±â ÆíÇÏ°Ô ÇÔ?
+        //itemImage = Resources.Load("");// ì•„ì´í…œ ì´ë¯¸ì§€ëŠ” IDì™€ ë˜‘ê°™ì´ í•´ì„œ ë¶ˆëŸ¬ì˜¤ê¸° í¸í•˜ê²Œ í•¨?
     }
-    /*
-    public bool Use()
-    {
-        return false;
-    }
-    */
 }
