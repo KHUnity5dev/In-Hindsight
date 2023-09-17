@@ -16,6 +16,7 @@ public class Playercontrol : MonoBehaviour
     bool QuestUIOn = false;
     bool InvenUIOn = false;
     bool PauseUIOn = false;
+    bool WalkSound = false;
     public GameObject ActiveUI;
     void Awake() // �����Ҷ� �ѹ��� ����Ǵ� �Լ�
     {
@@ -28,10 +29,18 @@ public class Playercontrol : MonoBehaviour
     void Update() // �ϳ��� �����Ӹ��� ȣ��Ǵ� ���� �ֱ� �Լ�
     {
         if (Inputvec == Vector2.zero)
+        {
             Anim.SetBool("isWalking", false);
+        }
         else
+        {
             Anim.SetBool("isWalking", true);
-
+        }
+        if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+        {
+            CancelInvoke("CreateMoveSfx");
+            WalkSound = false;
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift)) // �޸��� ����
         {
             Player.Player_Speed = Player.Player_Speed + 2f;
@@ -54,7 +63,6 @@ public class Playercontrol : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("#####"+Playerdir);
             Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
             LayerMask mask = LayerMask.GetMask("OpenDoor") | LayerMask.GetMask("Object");
             RaycastHit2D rayHitobj;
@@ -152,9 +160,18 @@ public class Playercontrol : MonoBehaviour
     }
     void OnMove(InputValue value) // �̵� �Լ�
     {
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Footstep);
+        if (!WalkSound)
+        { 
+            InvokeRepeating("CreateMoveSfx", 0, 0.2f);
+            WalkSound = true;
+        }
+
         Inputvec = value.Get<Vector2>();
         Inputvec.y = 0f;
+    }
+    void CreateMoveSfx()
+    {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Footstep);
     }
     void OnFlipA()
     {
