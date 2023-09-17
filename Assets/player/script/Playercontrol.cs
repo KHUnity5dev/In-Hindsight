@@ -52,7 +52,7 @@ public class Playercontrol : MonoBehaviour
             Player.Player_Speed = Player.Player_Speed - 2f;
             Player.Player_State = Player.State.Walk;
         }
-        Pause();
+        //Pause();
         ReloadCaller();
         Gunshot();
         QuestCaller();
@@ -229,13 +229,13 @@ public class Playercontrol : MonoBehaviour
             Invoke("Reload", 1);
         }
     }
-    void Pause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape)) // �޸��� ����
-        {
-            Player.Dead();
-        }
-    }
+    //void Pause()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape)) // �޸��� ����
+    //    {
+    //        Player.Dead();
+    //    }
+    //}
     void QuestCaller()
     {
         if (Input.GetKeyDown(KeyCode.Q))
