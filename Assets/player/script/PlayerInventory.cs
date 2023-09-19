@@ -14,8 +14,9 @@ public class Gun
         get { return sight; }
         set { sight = value; }
     }
-    public int Head { 
-        get { return head;}
+    public int Head
+    {
+        get { return head; }
         set { head = value; }
     }
     public int Magazine
@@ -26,7 +27,7 @@ public class Gun
     public float Damage()
     {
         float AllDamage = damage;
-        if(head == 1)
+        if (head == 1)
         {
             AllDamage += 10;
         }
@@ -48,14 +49,15 @@ public class PlayerInventory : MonoBehaviour
     public static int Bullets = 0;
     public static int Maxmagazine = 10;
     public static int Magazine = 0;
-    void OnEnable() {
-        if(Instance != null)
+    void OnEnable()
+    {
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        
+
         Debug.Log("Player : StageStart");
         Bullets = PlayerPrefs.GetInt("Bullets");
 

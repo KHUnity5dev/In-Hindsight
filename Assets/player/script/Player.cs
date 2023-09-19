@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     Animator Anim;
     SpriteRenderer Renderer;
     BoxCollider2D BoxCollider;
-    
+
     private static Player Inst;  // ����ƽ �÷��̾� ��ü �ϳ� �ۿ� �������� �ʴ´�.
     public enum State
     {
@@ -27,6 +27,12 @@ public class Player : MonoBehaviour
     }
     private int Hp;
     private int Maxhp = 100;
+    private bool m_UIon = false;
+    public static bool UIon
+    {
+        get { return Inst.m_UIon; }
+        set { Inst.m_UIon = value;}
+    }
     public int Player_Hp
     {
         get

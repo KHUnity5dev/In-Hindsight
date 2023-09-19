@@ -6,29 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class Stage2_Mana : MonoBehaviour
 {
-    public void Restart_Level()
+   public void Restart_Level()
     {
-        PlayerPrefs.SetInt("Stage", 1);
-        SceneManager.LoadScene("Stage1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void Next_Level()
+    /*public void Next_Level()
     {
-        PlayerPrefs.SetInt("Stage", 2);
-        SceneManager.LoadScene("Stage2");
-    }
-    // Start is called before the first frame update
-    void Start()
+        PlayerPrefs.SetString("Stage", "Stage2");
+    }*/
+    public void Next_Level(string level)
     {
-
+        Debug.Log("Level is ");
+        Debug.Log(level);
+        PlayerPrefs.SetString("Stage", "Stage2");
+        SceneManager.LoadScene("Stage" + level);
     }
 
     // Update is called once per frame
+    // ���ؼ�, ��ǲ �޴��� ������ �ű��.
     void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        /*if (Input.GetMouseButtonDown(2))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        }
+            Next_Level();
+        }*/
     }
 }

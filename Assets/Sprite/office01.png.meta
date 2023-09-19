@@ -256,9 +256,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 21
+        y: 42
         width: 16
-        height: 36
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,10 +318,10 @@ TextureImporter:
       name: office01_10
       rect:
         serializedVersion: 2
-        x: 116
-        y: 22
-        width: 14
-        height: 21
+        x: 80
+        y: 25
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,10 +339,10 @@ TextureImporter:
       name: office01_11
       rect:
         serializedVersion: 2
-        x: 132
+        x: 116
         y: 22
-        width: 40
-        height: 26
+        width: 14
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: office01_12
       rect:
         serializedVersion: 2
-        x: 3
-        y: 2
-        width: 16
-        height: 16
+        x: 132
+        y: 22
+        width: 40
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,7 +381,7 @@ TextureImporter:
       name: office01_13
       rect:
         serializedVersion: 2
-        x: 20
+        x: 3
         y: 2
         width: 16
         height: 16
@@ -402,7 +402,7 @@ TextureImporter:
       name: office01_14
       rect:
         serializedVersion: 2
-        x: 37
+        x: 20
         y: 2
         width: 16
         height: 16
@@ -423,7 +423,7 @@ TextureImporter:
       name: office01_15
       rect:
         serializedVersion: 2
-        x: 54
+        x: 37
         y: 2
         width: 16
         height: 16
@@ -444,7 +444,7 @@ TextureImporter:
       name: office01_16
       rect:
         serializedVersion: 2
-        x: 71
+        x: 54
         y: 2
         width: 16
         height: 16
@@ -457,6 +457,27 @@ TextureImporter:
       bones: []
       spriteID: 65dc7b5c31249e641aa9df348f6686b0
       internalID: 1361948112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: office01_17
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 2
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed7de4cfdd8e5524799d2466ab977fa4
+      internalID: 739294610
       vertices: []
       indices: 
       edges: []
@@ -481,6 +502,7 @@ TextureImporter:
       office01_14: -858335335
       office01_15: -903331605
       office01_16: 1361948112
+      office01_17: 739294610
       office01_2: -1637604561
       office01_3: -658253550
       office01_4: 2142281747
