@@ -11,6 +11,6 @@ public class Pipe : MonoBehaviour
         Instantiate(Smoke, transform);
 
         gameObject.layer = 8;
-
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Gas);
     }
 }

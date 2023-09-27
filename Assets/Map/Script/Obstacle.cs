@@ -19,5 +19,6 @@ public class Obstacle : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Enemydead);
     }
 }

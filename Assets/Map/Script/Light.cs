@@ -11,5 +11,6 @@ public class Light : MonoBehaviour
         Debug.Log("444");
         Instantiate(Dark, transform);
         gameObject.layer = 8;
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Light);
     }
 }

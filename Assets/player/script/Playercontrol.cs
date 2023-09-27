@@ -57,6 +57,8 @@ public class Playercontrol : MonoBehaviour
         Gunshot();
         QuestCaller();
         InvenCaller();
+        StairUp();
+        StairDown();
 
         Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, 5*Playerdir, new Color(1, 0, 0));
 
@@ -259,6 +261,48 @@ public class Playercontrol : MonoBehaviour
             {
                 //Quest Ui unActive
                 InvenUIOn = false;
+            }
+        }
+    }
+    void StairUp()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
+            LayerMask mask = LayerMask.GetMask("OpenDoor") | LayerMask.GetMask("Object");
+            RaycastHit2D rayHitobj;
+            rayHitobj = Physics2D.Raycast(rayPosition, Playerdir, 1f, mask);
+            if (rayHitobj)
+            {
+                if (rayHitobj.distance < 0.5f || rayHitobj.distance > -0.5f)
+                {
+                    GameObject obj = rayHitobj.collider.gameObject;
+                    if (obj.tag == "Stair")
+                    {
+                        obj.SendMessage("Get_Player_Interacted_Up", gameObject);
+                    }
+                }
+            }
+        }
+    }
+    void StairDown()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
+            LayerMask mask = LayerMask.GetMask("OpenDoor") | LayerMask.GetMask("Object");
+            RaycastHit2D rayHitobj;
+            rayHitobj = Physics2D.Raycast(rayPosition, Playerdir, 1f, mask);
+            if (rayHitobj)
+            {
+                if (rayHitobj.distance < 0.5f || rayHitobj.distance > -0.5f)
+                {
+                    GameObject obj = rayHitobj.collider.gameObject;
+                    if (obj.tag == "Stair")
+                    {
+                        obj.SendMessage("Get_Player_Interacted_Down", gameObject);
+                    }
+                }
             }
         }
     }

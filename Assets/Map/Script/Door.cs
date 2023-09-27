@@ -19,7 +19,7 @@ public class Door : MonoBehaviour
             this.gameObject.layer = 6;
         }
 
-
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.door);
         animator = GetComponent<Animator>();
         animator.SetBool("Is_Open", !animator.GetBool("Is_Open"));
     }
@@ -56,14 +56,14 @@ public class Door : MonoBehaviour
 
         animator = GetComponent<Animator>();
         animator.SetBool("Is_Open", true);
-
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.door);
         this.gameObject.layer = 8;
     }
     public void Close_Interacted()
     {
         Door_Physical_Collider = GetComponent<BoxCollider2D>();
         Door_Physical_Collider.isTrigger = false;
-
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.door);
         animator = GetComponent<Animator>();
         animator.SetBool("Is_Open", false);
         this.gameObject.layer = 6;
