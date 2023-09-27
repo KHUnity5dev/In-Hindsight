@@ -23,6 +23,7 @@ public class Explod : MonoBehaviour
         {
             Player.Dead();
         }
+        Destroy(gameObject);
     }
 
 }
