@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    [SerializeField]
     private int hp;
 
     void Start()
     {
-        hp = 3;
     }
 
     public void Get_Player_Shooted()
     {
 
         hp -= 1;
-        if (hp == 0)
+        if (hp <= 0)
         {
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Enemydead);
             Destroy(gameObject);
         }
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Enemydead);
+        
     }
 }
