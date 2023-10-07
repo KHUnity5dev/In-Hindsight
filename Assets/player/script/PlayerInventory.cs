@@ -33,6 +33,10 @@ public class Gun
         }
         return AllDamage;
     }
+    public float Accuracy()
+    {
+        return Random.Range(0.0f, 2.0f);
+    }
     public float Gun_Noise()
     {
         float AllNoise = gunnoise;

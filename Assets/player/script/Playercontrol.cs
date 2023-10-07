@@ -204,8 +204,9 @@ public class Playercontrol : MonoBehaviour
             Playerdir = point.normalized;
             GunNoiseCreater();
             FlipControl();
-            RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position, point, 10f, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Object"));
-
+            Vector3 random_acc = new Vector3(0f, PlayerInventory.MyGun.Accuracy(), 0f);
+            RaycastHit2D rayHit = Physics2D.Raycast(Rigid.position, point+ random_acc, 10f, LayerMask.GetMask("Enemy") | LayerMask.GetMask("Object"));
+            Debug.Log("random number"+random_acc);
             if (rayHit)
             {
                 GameObject obj = rayHit.collider.gameObject;
@@ -222,7 +223,7 @@ public class Playercontrol : MonoBehaviour
 
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
         }
-        Debug.DrawRay(Rigid.position, point, new Color(1, 0, 1)); // ���콺 ������ ����
+        Debug.DrawRay(Rigid.position, point + Vector3.up, new Color(1, 0, 1)); // ���콺 ������ ����
     }
     void ReloadCaller()
     {
