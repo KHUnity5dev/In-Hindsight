@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
 
 public class Playercontrol : MonoBehaviour
@@ -18,6 +20,7 @@ public class Playercontrol : MonoBehaviour
     bool InvenUIOn = false;
     bool WalkSound = false;
     public GameObject ActiveUI;
+
     void Awake() // �����Ҷ� �ѹ��� ����Ǵ� �Լ�
     {
         Spriterenderer = GetComponent<SpriteRenderer>();
@@ -60,9 +63,12 @@ public class Playercontrol : MonoBehaviour
         StairUp();
         StairDown();
 
-        Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, 5*Playerdir, new Color(1, 0, 0));
+        Debug.DrawRay(Rigid.position + 0.2f * Vector2.up, 5*Playerdir, new UnityEngine.Color(1, 0, 0));
 
-
+        if(Input.GetKeyDown(KeyCode.G) && PlayerInventory.Grenade > 0)
+        {
+            Grenade();
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Vector2 rayPosition = Rigid.position + 0.2f * Vector2.up;
@@ -223,7 +229,17 @@ public class Playercontrol : MonoBehaviour
 
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Gunshot);
         }
-        Debug.DrawRay(Rigid.position, point + Vector3.up, new Color(1, 0, 1)); // ���콺 ������ ����
+        Debug.DrawRay(Rigid.position, point + Vector3.up, new UnityEngine.Color(1, 0, 1)); // ���콺 ������ ����
+    }
+    void Grenade()
+    {
+        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)) - (Vector3)(Rigid.position + Vector2.up);
+        GameObject grenade = Instantiate(PlayerInventory.Grenade_pref);
+        Rigidbody2D grenade_rigid = grenade.GetComponent<Rigidbody2D>();
+        grenade.transform.position = gameObject.transform.position+ new Vector3(Playerdir.x,Playerdir.y,0);
+        
+        grenade_rigid.AddForce(point.normalized * 500+ Vector3.up*100, ForceMode2D.Force);
+        PlayerInventory.Grenade--;
     }
     void ReloadCaller()
     {

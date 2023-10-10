@@ -51,8 +51,15 @@ public class PlayerInventory : MonoBehaviour
     public static PlayerInventory Instance;
     public static Gun MyGun = new Gun();
     public static int Bullets = 0;
+    public static int Grenade = 0;
     public static int Maxmagazine = 10;
     public static int Magazine = 0;
+    [SerializeField]
+    private GameObject m_grenade;
+    public static GameObject Grenade_pref
+    {
+        get { return Instance.m_grenade; }
+    }
     void OnEnable()
     {
         if (Instance != null)
@@ -64,6 +71,7 @@ public class PlayerInventory : MonoBehaviour
 
         Debug.Log("Player : StageStart");
         Bullets = PlayerPrefs.GetInt("Bullets");
+        Grenade = 3;//PlayerPrefs.GetInt("Grenade");
 
         if (Bullets < Maxmagazine)
         {
