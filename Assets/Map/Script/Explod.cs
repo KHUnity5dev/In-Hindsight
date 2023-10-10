@@ -11,7 +11,6 @@ public class Explod : MonoBehaviour
 
     public void Get_Player_Shooted()
     {
-
         ObjectsInRange = Physics2D.OverlapCircleAll(gameObject.transform.position, Range, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < ObjectsInRange.Length; i++)
         {
@@ -23,7 +22,12 @@ public class Explod : MonoBehaviour
         {
             Player.Dead();
         }
+        ObjectsInRange = Physics2D.OverlapCircleAll(gameObject.transform.position, Range, LayerMask.GetMask("Object"));
+        for (int i = 0; i < ObjectsInRange.Length; i++)
+        {
+            if(ObjectsInRange[i].gameObject.tag == "Shootable")
+                Destroy(ObjectsInRange[i].gameObject);
+        }
         Destroy(gameObject);
     }
-
 }
