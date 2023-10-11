@@ -29,15 +29,25 @@ public class AllMapUI : MonoBehaviour
     public void Clear()
     {
         Debug.Log("ClearButton");
+
         //모든 아이템 Save
-        Debug.Log(PlayerInventory.Bullets);
+
         PlayerPrefs.SetInt("Bullets", PlayerInventory.Bullets); 
-        Debug.Log(PlayerPrefs.GetInt("Bullets"));
-        Debug.Log(PlayerInventory.Bullets);
+        PlayerPrefs.SetInt("Grenade", PlayerInventory.Grenade); 
+
         //모든 아이템 Save end
+
+
         ClearMaps.Add(SceneManager.GetActiveScene().name);
-        QuestManager.questList[1].star = "2";
-        QuestManager.questList[0].isActive = false;
+
+
+        int stagenum = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
+        Debug.Log(stagenum);
+
+        QuestManager.questList[stagenum-1].star = "2"; //스타를 bronze로 바굼
+        // QuestManager.questList[stagenum-1].isActive = false; // 의뢰 걍 없애버림
+        QuestManager.questList[stagenum].isActive = true; // 의뢰오픈
         SceneManager.LoadScene("LobbyMap");
+        
     }
 }
