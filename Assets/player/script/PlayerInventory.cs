@@ -71,7 +71,7 @@ public class PlayerInventory : MonoBehaviour
 
         Debug.Log("Player : StageStart");
         Bullets = PlayerPrefs.GetInt("Bullets");
-        Grenade = 3;//PlayerPrefs.GetInt("Grenade");
+        Grenade = PlayerPrefs.GetInt("Grenade");
 
         if (Bullets < Maxmagazine)
         {

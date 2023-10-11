@@ -87,6 +87,8 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         for(int i = 0; i < Invenitems.Count; i++)
         {
             slots[i].item = Invenitems[i];
+            InvenCnt[0] = PlayerInventory.Bullets;
+            InvenCnt[1] = PlayerInventory.Grenade;
             // slots[i].UpdateSlotUI(InvenCnt[i]);
             slots[i].UpdateSlotUI(InvenCnt[i]);
         }
