@@ -67,10 +67,14 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
             Debug.Log(AllMapUI.ClearMaps);
             PlayerPrefs.SetInt("money", StartMoney);
             PlayerPrefs.SetInt("Bullets", 10);
+            PlayerPrefs.SetInt("Grenade", 0);
+            InvenCnt.Add(10); // 총알 개수
+            InvenCnt.Add(0); // 수류탄 개수
         }
         Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //총알 인벤토리 첫번째 칸에 고정
-        InvenCnt.Add(0); // 총알 개수
-        InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
+        Invenitems.Add(ItemDatabase.Instance.itemDB[1]); //수류탄 인벤토리 두번째 칸에 고정
+        // InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
+        // InvenCnt[1] = PlayerPrefs.GetInt("Grenade");
         RedrawSlotUI();
     }
     
@@ -84,7 +88,7 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         {
             slots[i].item = Invenitems[i];
             // slots[i].UpdateSlotUI(InvenCnt[i]);
-            slots[i].UpdateSlotUI(PlayerInventory.Bullets);
+            slots[i].UpdateSlotUI(InvenCnt[i]);
         }
         moneyText.text = PlayerPrefs.GetInt("money").ToString();
     }
@@ -97,39 +101,50 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
             if (Invenitems[i].itemName == item.itemName)
             {
                 // InvenCnt[i] += n; //동일한 아이템 있으면 개수 늘리기
-                if (i == 0){
-                    PlayerPrefs.SetInt("Bullets", PlayerPrefs.GetInt("Bullets")+n);
+                if (true){
+                    PlayerPrefs.SetInt(item.itemName, PlayerPrefs.GetInt(item.itemName)+n);
                     PlayerInventory.Bullets = PlayerPrefs.GetInt("Bullets");
-                    InvenCnt[i] = PlayerPrefs.GetInt("Bullets");
+                    PlayerInventory.Grenade = PlayerPrefs.GetInt("Grenade");
+                    InvenCnt[i] = PlayerPrefs.GetInt(item.itemName);
                 }
                 isAdd = false;
                 break;
+            }
+            else {
+                Debug.Log("두번째아이템");
             }
         }
         if (isAdd)
         {
             InvenCnt.Add(1);
             Invenitems.Add(item); //인벤토리 아이템 리스트에 아이템 추가
+            Debug.Log("두번째아이템 리스트추가");
         }
         RedrawSlotUI(); //UI 업데이트
     }
 
     public void RemoveItem(int index, int n) //아이템 위치(index), 제거하고자하는 개수(n)을 받아 인벤토리에서 제거.
     {
-        if (index == 0) //총알(index=0)의 경우 개수가 0이어도 사라지지 않게 예외처리.
+        if (index > -1) //총알(index=0)의 경우 개수가 0이어도 사라지지 않게 예외처리.-> 그냥 모든애들 안사라지게
         {
-            if (InvenCnt[0] - n < 0) //총알이 부족한 경우
+            if (InvenCnt[index] - n < 0) //총알이 부족한 경우
             {
-                Debug.Log("총알 부족");
+                Debug.Log("아이템 부족");
                 RedrawSlotUI();
                 return;
             }
-            PlayerPrefs.SetInt("Bullets", PlayerPrefs.GetInt("Bullets")-n);
-            InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
-            PlayerInventory.Bullets = PlayerPrefs.GetInt("Bullets");
+            if(index == 0){
+                PlayerPrefs.SetInt("Bullets", PlayerPrefs.GetInt("Bullets")-n);
+                InvenCnt[index] = PlayerPrefs.GetInt("Bullets");
+                PlayerInventory.Bullets = PlayerPrefs.GetInt("Bullets");
+            } else if (index == 1){
+                PlayerPrefs.SetInt("Grenade", PlayerPrefs.GetInt("Grenade")-n);
+                InvenCnt[index] = PlayerPrefs.GetInt("Grenade");
+                PlayerInventory.Grenade = PlayerPrefs.GetInt("Grenade");
+            }
             // InvenCnt[index] -= n;
             RedrawSlotUI();
-            if (InvenCnt[0] <= 0)
+            if (InvenCnt[index] <= 0)
                 RedrawSlotUI();
                 return;
         } 
