@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         
         if (enemyAttack.OnTarget){
             transform.GetChild(0).gameObject.SetActive(true);// 대상 발견시 느낌표 뜸
+            enemyMove.Chase(Scan);
             // if (IsBoss)
             // {
 
@@ -43,11 +44,11 @@ public class Enemy : MonoBehaviour
                 enemyAttack.Attack(Scan);
             }
         } else{
-            if(IsBoss){
-                enemyMove.Chase(Scan);
-            }
-            else
-                transform.GetChild(0).gameObject.SetActive(false); // 대상 미 발견시 느낌표 없앰
+            // if(IsBoss){
+            //     enemyMove.Chase(Scan);
+            // }
+            // else
+            transform.GetChild(0).gameObject.SetActive(false); // 대상 미 발견시 느낌표 없앰
             CurAttackCoolTime = AttackCoolTime;
         }
         if (!enemyMove.IsMove){

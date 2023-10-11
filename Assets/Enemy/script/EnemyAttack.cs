@@ -21,6 +21,10 @@ public class EnemyAttack : MonoBehaviour
         // GameObject temp =  Instantiate(Bullet, transform.position, Quaternion.identity);
         // Destroy(temp , 10);
         // scan을 죽이는 코드
+        if(Enemynum == 1){
+            transform.Find("explod").gameObject.SendMessage("Get_Player_Shooted");
+            return;
+        }
         Player.Dead();
     }
     public GameObject Check()
