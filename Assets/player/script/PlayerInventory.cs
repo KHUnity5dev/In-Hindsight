@@ -48,10 +48,17 @@ public class Gun
 public class PlayerInventory : MonoBehaviour
 {
     #region Singleton
+    enum Items
+    {
+        Bullet,
+        Grenade
+    }
+
     public static PlayerInventory Instance;
     public static Gun MyGun = new Gun();
     public static int Bullets = 0;
     public static int Grenade = 0;
+    public static List<int> Itemss = new List<int>();
     public static int Maxmagazine = 10;
     public static int Magazine = 0;
     [SerializeField]
@@ -72,7 +79,7 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log("Player : StageStart");
         Bullets = PlayerPrefs.GetInt("Bullets");
         Grenade = PlayerPrefs.GetInt("Grenade");
-
+        
         if (Bullets < Maxmagazine)
         {
             Magazine = Bullets;
@@ -80,6 +87,7 @@ public class PlayerInventory : MonoBehaviour
         else
             Magazine = Maxmagazine;
     }
+    
     void FixedUpdate()
     {
     }
