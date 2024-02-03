@@ -45,6 +45,23 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
             //그래서 이미 전역변수인 instance에 인스턴스가 존재한다면 자신(새로운 씬의 InvenCanvas)을 삭제해준다.
             Destroy(this.gameObject);
         }
+        inventoryPanel.SetActive(isActionInv);
+        sellSlot = sellPanel.GetComponentInChildren<SellSlot>();
+        slots = slotHolder.GetComponentsInChildren<InvSlot>();
+        if(AllMapUI.ClearMaps.Count < 1){
+            Debug.Log(AllMapUI.ClearMaps);
+            PlayerPrefs.SetInt("money", StartMoney);
+            PlayerPrefs.SetInt("Bullets", 10);
+            PlayerPrefs.SetInt("Grenade", 0);
+            PlayerInventory.Bullets = PlayerPrefs.GetInt("Bullets");
+            PlayerInventory.Grenade = PlayerPrefs.GetInt("Grenade");
+            InvenCnt.Add(10); // 총알 개수
+            InvenCnt.Add(0); // 수류탄 개수
+        }
+        Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //총알 인벤토리 첫번째 칸에 고정
+        Invenitems.Add(ItemDatabase.Instance.itemDB[1]); //수류탄 인벤토리 두번째 칸에 고정
+        // InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
+        // InvenCnt[1] = PlayerPrefs.GetInt("Grenade");
     }
     public static InvInfo Instance
     {
@@ -60,21 +77,6 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
     //**
     void Start()
     {
-        inventoryPanel.SetActive(isActionInv);
-        sellSlot = sellPanel.GetComponentInChildren<SellSlot>();
-        slots = slotHolder.GetComponentsInChildren<InvSlot>();
-        if(AllMapUI.ClearMaps.Count < 1){
-            Debug.Log(AllMapUI.ClearMaps);
-            PlayerPrefs.SetInt("money", StartMoney);
-            PlayerPrefs.SetInt("Bullets", 10);
-            PlayerPrefs.SetInt("Grenade", 0);
-            InvenCnt.Add(10); // 총알 개수
-            InvenCnt.Add(0); // 수류탄 개수
-        }
-        Invenitems.Add(ItemDatabase.Instance.itemDB[0]); //총알 인벤토리 첫번째 칸에 고정
-        Invenitems.Add(ItemDatabase.Instance.itemDB[1]); //수류탄 인벤토리 두번째 칸에 고정
-        // InvenCnt[0] = PlayerPrefs.GetInt("Bullets");
-        // InvenCnt[1] = PlayerPrefs.GetInt("Grenade");
         RedrawSlotUI();
     }
     
@@ -185,7 +187,7 @@ public class InvInfo : MonoBehaviour //인벤토리 데이터 및 슬롯 관리
         // PlayerPrefs.GetInt("Bullets",InvenCnt[0]);
         // PlayerPrefs.SetInt("money", SaveMoney);
         Debug.Log("LoadInventory");
-        RedrawSlotUI();
+        // RedrawSlotUI();
     }
 
     public void ActiveShopModeUI() //상점모드 인벤토리 켜기
