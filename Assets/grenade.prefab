@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 303022699}
   - component: {fileID: 303022698}
   - component: {fileID: 3023505890126844743}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: grenade
   m_TagString: Shootable
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4058d08da7c884e979881259b57402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ISGrenade: 1
   Range: 3
 --- !u!50 &3023505890126844743
 Rigidbody2D:

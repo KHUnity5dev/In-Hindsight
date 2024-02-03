@@ -374,6 +374,7 @@
 "Assets/Enemy/script/Enemy.cs"
 "Assets/Enemy/script/EnemyAnimation.cs"
 "Assets/Enemy/script/EnemyAttack.cs"
+"Assets/Enemy/script/EnemyBoss.cs"
 "Assets/Enemy/script/EnemyMove.cs"
 "Assets/Enemy/script/EnemyStat.cs"
 "Assets/Enemy/script/HeadnBody.cs"

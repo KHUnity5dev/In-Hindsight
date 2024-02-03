@@ -5,9 +5,15 @@ using UnityEngine;
 public class Explod : MonoBehaviour
 {
     private Collider2D[] ObjectsInRange;
+    public bool ISGrenade;
 
     [SerializeField]
     private float Range;
+    void Start(){
+        if(ISGrenade){
+            Invoke("Get_Player_Shooted",3f);
+        }
+    }
 
     public void Get_Player_Shooted()
     {

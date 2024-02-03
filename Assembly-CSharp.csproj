@@ -87,6 +87,7 @@
      <Compile Include="Assets\Enemy\script\EnemyMove.cs" />
      <Compile Include="Assets\CameraMove.cs" />
      <Compile Include="Assets\player\Hero Knight - Pixel Art\Demo\DestroyEvent_HeroKnight.cs" />
+     <Compile Include="Assets\Enemy\script\EnemyBoss.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
