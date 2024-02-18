@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Animator Anim;
     SpriteRenderer Renderer;
     BoxCollider2D BoxCollider;
+    public bool IsKey = false;
 
     private static Player Inst;  // ����ƽ �÷��̾� ��ü �ϳ� �ۿ� �������� �ʴ´�.
     public enum State
@@ -150,5 +151,16 @@ public class Player : MonoBehaviour
         Inst.GetComponent<Playercontrol>().enabled = false;
         Inst.GetComponent<PlayerInput>().enabled = false;
         AudioManager.instance.PlayBgm(false);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        // 만약 충돌한 객체가 "Key" 태그를 가지고 있다면
+        if (other.CompareTag("Key"))
+        {
+            // 충돌한 키를 파괴하고, 키를 먹었다는 메시지를 출력합니다.
+            IsKey = true;
+            Destroy(other.gameObject);
+            Debug.Log("Getkey");
+        }
     }
 }
