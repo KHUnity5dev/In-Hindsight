@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     Animator Anim;
     SpriteRenderer Renderer;
     BoxCollider2D BoxCollider;
-    public bool IsKey = false;
+ 
 
     private static Player Inst;  // ����ƽ �÷��̾� ��ü �ϳ� �ۿ� �������� �ʴ´�.
     public enum State
@@ -52,6 +52,16 @@ public class Player : MonoBehaviour
         set
         {
             Inst.playerstate = value;
+        }
+    }
+    [SerializeField]
+    private bool m_haskey = false;
+    public static bool HasKey
+    {
+        get { return Inst.m_haskey; }
+        set
+        {
+            Inst.m_haskey = value;
         }
     }
     [SerializeField]
@@ -158,7 +168,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Key"))
         {
             // 충돌한 키를 파괴하고, 키를 먹었다는 메시지를 출력합니다.
-            IsKey = true;
+            HasKey = true;
             Destroy(other.gameObject);
             Debug.Log("Getkey");
         }

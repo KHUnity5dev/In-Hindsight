@@ -2211,6 +2211,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &428930536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6464163699210725110, guid: 888811c8d5b1a6b46ac2960d30d219b0, type: 3}
+  m_PrefabInstance: {fileID: 1356656980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &430341830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9616,13 +9621,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 111445659, guid: 888811c8d5b1a6b46ac2960d30d219b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 888811c8d5b1a6b46ac2960d30d219b0, type: 3}
 --- !u!4 &1356656981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5686776484728903855, guid: 888811c8d5b1a6b46ac2960d30d219b0, type: 3}
   m_PrefabInstance: {fileID: 1356656980}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1356656986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428930536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2894958d22bf33846842ff3a46b6dae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363990565 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1319782657047348971, guid: a6db4c30ff00bd946b6380897f0bd0c2, type: 3}
@@ -9870,7 +9888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7565206346498229581, guid: 6333ef540988a4f4db207a602edb8763, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.33
+      value: 16.28
       objectReference: {fileID: 0}
     - target: {fileID: 7565206346498229581, guid: 6333ef540988a4f4db207a602edb8763, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21643,9 +21661,10 @@ GameObject:
   - component: {fileID: 1908089304}
   - component: {fileID: 1908089303}
   - component: {fileID: 1908089302}
-  m_Layer: 6
+  - component: {fileID: 1908089305}
+  m_Layer: 8
   m_Name: key
-  m_TagString: Key
+  m_TagString: Stair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21743,6 +21762,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1908089305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908089301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1279f1982acd65d41b26600a2b2f4fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1908459018
 PrefabInstance:
   m_ObjectHideFlags: 0

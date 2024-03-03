@@ -21,6 +21,7 @@ public class Playercontrol : MonoBehaviour
     bool WalkSound = false;
     public GameObject ActiveUI;
 
+
     void Awake() // �����Ҷ� �ѹ��� ����Ǵ� �Լ�
     {
         Spriterenderer = GetComponent<SpriteRenderer>();
@@ -323,4 +324,5 @@ public class Playercontrol : MonoBehaviour
             }
         }
     }
+
 }

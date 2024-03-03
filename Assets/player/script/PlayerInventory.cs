@@ -9,6 +9,7 @@ public class Gun
     private int magazine;
     private float damage = 10;
     private float gunnoise = 20;
+
     public int Sight
     {
         get { return sight; }
