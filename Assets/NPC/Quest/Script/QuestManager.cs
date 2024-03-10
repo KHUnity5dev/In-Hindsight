@@ -48,7 +48,7 @@ public class QuestManager : MonoBehaviour
             "0", true));
         questList.Add(new QuestData("4", "세 번째 의뢰",
             "보스를 암살하시오.",
-            "0", true));
+            "0", false));
 
     }
 }
