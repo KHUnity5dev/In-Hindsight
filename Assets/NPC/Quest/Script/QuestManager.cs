@@ -40,15 +40,15 @@ public class QuestManager : MonoBehaviour
             "star", (bool)isActive));
         */
 
-        questList.Add(new QuestData("1","첫 번째 의뢰", 
-            "첫 번째 의뢰설명입니다.",
-            "2", true));
-        questList.Add(new QuestData("2", "두 번째 의뢰",
-            "두 번째 의뢰설명입니다.",
+        questList.Add(new QuestData("2","첫 번째 의뢰", 
+            "숨은 목표를 처치하거나 모두 섬멸하시오. \n보상은 300골드",
             "0", true));
-        questList.Add(new QuestData("3", "세 번째 의뢰",
-            "세 번째 의뢰설명입니다.",
-            "0", false));
+        questList.Add(new QuestData("3", "두 번째 의뢰",
+            "숨은 목표를 처치하거나 모두 섬멸하시오. \n보상은 400골드",
+            "0", true));
+        questList.Add(new QuestData("4", "세 번째 의뢰",
+            "보스를 암살하시오.",
+            "0", true));
 
     }
 }

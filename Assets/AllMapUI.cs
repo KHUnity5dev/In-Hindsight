@@ -43,10 +43,25 @@ public class AllMapUI : MonoBehaviour
 
         int stagenum = int.Parse(SceneManager.GetActiveScene().name.Substring(5,1));
         Debug.Log(stagenum);
-
-        QuestManager.questList[stagenum-1].star = "2"; //스타를 bronze로 바굼
-        // QuestManager.questList[stagenum-1].isActive = false; // 의뢰 걍 없애버림
-        QuestManager.questList[stagenum].isActive = true; // 의뢰오픈
+        switch(stagenum){
+            case 2:
+                QuestManager.questList[0].star = "2"; //스타를 bronze로 바굼
+                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money")+300);
+                break;
+            case 3:
+                QuestManager.questList[1].star = "2"; //스타를 bronze로 바굼
+                PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money")+400);
+                break;
+            case 4:
+                QuestManager.questList[2].star = "2"; //스타를 bronze로 바굼
+                break;
+        }
+        if(QuestManager.questList[0].star == "2" && QuestManager.questList[1].star == "2"){
+            QuestManager.questList[2].isActive = true;
+        }
+        // QuestManager.questList[stagenum-1].star = "2"; //스타를 bronze로 바굼
+        // // QuestManager.questList[stagenum-1].isActive = false; // 의뢰 걍 없애버림
+        // QuestManager.questList[stagenum].isActive = true; // 의뢰오픈
         SceneManager.LoadScene("LobbyMap");
         
     }

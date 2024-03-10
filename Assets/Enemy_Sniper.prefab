@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsBoss: 0
   IsMove: 0
-  speed: 1
+  speed: 0
   Enemynum: 0
   EnemyAI: 0
   IsChase: 0
@@ -417,9 +417,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyHP: 100
   headHP: 50
-  DropItem:
-  - {fileID: 2720142881531125625, guid: c0d875162b59f6b43ad64724e46ee10b, type: 3}
+  DropItem: []
   deathSound: {fileID: 8300000, guid: d0e620b201b4f4e4bb090896f25dd1f6, type: 3}
+  IsBoss: 0
 --- !u!95 &3636950785194830307
 Animator:
   serializedVersion: 5

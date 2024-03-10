@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         CurAttackCoolTime = AttackCoolTime; //기본 1초
+        enemyMove.IsBoss = IsBoss;
+        enemyStat.IsBoss = IsBoss;
     }
     
     // Update is called once per frame

@@ -598,7 +598,7 @@ MonoBehaviour:
   enemyAttack: {fileID: 6522347435065344406}
   enemyMove: {fileID: 6522347435065344407}
   enemyStat: {fileID: 259796591400478255}
-  AttackCoolTime: 3
+  AttackCoolTime: 1
 --- !u!114 &6522347435065344406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,6 +671,7 @@ MonoBehaviour:
   DropItem:
   - {fileID: 2319735295110498912, guid: 90c9671885687c64dbb707509451ddb3, type: 3}
   deathSound: {fileID: 8300000, guid: d0e620b201b4f4e4bb090896f25dd1f6, type: 3}
+  IsBoss: 0
 --- !u!95 &911437119
 Animator:
   serializedVersion: 5

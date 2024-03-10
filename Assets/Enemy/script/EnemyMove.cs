@@ -95,8 +95,8 @@ public class EnemyMove : MonoBehaviour
         //종류에 맞는 순찰패턴
         for (int i = 0; i < 12; i++)
         {
-            Debug.Log(PatrolArray[Enemynum,i]);
-            Debug.Log(rigid.velocity);
+            // Debug.Log(PatrolArray[Enemynum,i]);
+            // Debug.Log(rigid.velocity);
             if(IsBoss){
                 IsMove = false;
                 rigid.velocity = Vector2.zero; 

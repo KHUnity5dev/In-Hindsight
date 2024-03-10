@@ -9,6 +9,7 @@ public class EnemyStat : MonoBehaviour
     public float headHP = 50; // 머리 피격용 HP
     public GameObject[] DropItem;
     public AudioClip deathSound; // 죽는 소리
+    public bool IsBoss;
     void Start() {
         
     }
@@ -21,7 +22,7 @@ public class EnemyStat : MonoBehaviour
         if (bodyHP <= 0)
         {
             Die(); // 몸 피격으로 죽음
-            if(gameObject.name.Substring(0,4) == "Boss"){
+            if(gameObject.name.Substring(0,4) == "Boss" || IsBoss){
                 GameObject.Find("SceneMana").SendMessage("GameClear");
                 Debug.Log("GameClear");
             }

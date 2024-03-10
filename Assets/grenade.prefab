@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 3
+  ISGrenade: 1
 --- !u!50 &3023505890126844743
 Rigidbody2D:
   serializedVersion: 4

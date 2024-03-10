@@ -9,7 +9,7 @@ public class Pipe : MonoBehaviour
     {
         Debug.Log("666");
         Instantiate(Smoke, transform);
-
+        Destroy(this.gameObject, 5f);
         gameObject.layer = 8;
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Gas);
     }

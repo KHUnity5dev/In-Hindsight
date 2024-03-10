@@ -8,7 +8,11 @@ public class Explod : MonoBehaviour
 
     [SerializeField]
     private float Range;
-
+    public bool ISGrenade;
+    void Start(){
+        if (ISGrenade)
+            Invoke("Get_Player_Shooted",2f);
+    }
     public void Get_Player_Shooted()
     {
         ObjectsInRange = Physics2D.OverlapCircleAll(gameObject.transform.position, Range, LayerMask.GetMask("Enemy"));
