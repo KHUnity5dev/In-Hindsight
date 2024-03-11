@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/badge/Stealth-333333">
 </p>
 
+https://github.com/KHUnity5dev/In-Hindsight/assets/113617650/e19b69d0-e2c7-4478-a50e-2c7a68fbbc0d
+
 # Game Overview 
 <p> 2D 슈팅 액션 게임 In-HindSight 입니다!</p>
 <p></p>
@@ -38,6 +40,11 @@
 - **상점과 미션 시스템을 위한 NPC**
 
     <img width="50%" height="50%" align="center" src="https://github.com/KHUnity5dev/In-Hindsight/assets/113617650/abbf4d92-e70d-4a9d-a854-cc1dd9993dc2" >
+
+- **다양한 패턴의 보스 시스템**
+  
+    <img width="50%" height="50%" align="center" src="https://github.com/KHUnity5dev/In-Hindsight/assets/113617650/034b8483-9963-4a42-95da-0b5cfbc0866a" >
+
 
 ## 사양 및 개발환경
 - <img src="https://img.shields.io/badge/Windows-0170CE?logo=windows">**윈도우 플레이 지원**
