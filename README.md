@@ -55,7 +55,6 @@ https://github.com/KHUnity5dev/In-Hindsight/assets/113617650/e19b69d0-e2c7-4478-
   - 배형석(Player, Object, Level)
   - 이승준(Object, Design)
   - 이정호(NPC)
-  - 정유성(AI)
     
 ## 라이센스
   - 사운드 등의 직접 제작이 어려운 요소들은 유니티 무료 에셋 혹은 OpenGameArt의 CC0 라이센스 제품들을 이용하였습니다.
