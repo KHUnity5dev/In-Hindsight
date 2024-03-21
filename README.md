@@ -16,6 +16,8 @@ https://github.com/KHUnity5dev/In-Hindsight/assets/113617650/e19b69d0-e2c7-4478-
 <p> 2D 슈팅 액션 게임 In-HindSight 입니다!</p>
 <p></p>
 
+[In-Hindsight Download](https://github.com/KHUnity5dev/In-Hindsight/releases/download/OnPublished/Beta1.0.1Exe.zip)
+
 ### 줄거리
 조직에서 의뢰를 받고 청부 살해를 해 돈을 벌고 있는 주인공, 주인공은 의뢰를 성공적으로 완수하여 자신만의 <strong>비밀스러운 목표</strong>를 달성할 수 있을까요?
 
