@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Red_Button : MonoBehaviour
 {
+    //이런저런 기능 테스트용. 실제로 사용되지 않음.
     [SerializeField]
     private GameObject Stage_Manager;
     public void Get_Player_Interacted()

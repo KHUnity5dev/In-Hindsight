@@ -3,29 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-public class riciever : MonoBehaviour
+public class MapButton : MonoBehaviour, Object_Interacted_Interface
 {
-    private void Get_Player_Interacted()
+    public void Get_Player_Interacted()
     {
         Debug.Log("pressed by player_button");
     }
-    private void Get_Enemy_Interacted()
+    public void Get_Enemy_Interacted()
     {
         Debug.Log("pressed by enemy_button");
-    }
-
-}
-public class MapButton : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

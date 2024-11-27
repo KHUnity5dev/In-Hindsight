@@ -24,4 +24,6 @@ public class Stair : MonoBehaviour
     {
         enemy.transform.position = enemy.transform.position + new Vector3(0, Height, 0);
     }
+    
+
 }
